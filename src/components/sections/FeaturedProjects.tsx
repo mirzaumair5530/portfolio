@@ -12,7 +12,7 @@ export function FeaturedProjects() {
   return (
     <Container as="section" id="projects" className="scroll-mt-28 py-24">
       <div className="flex items-end justify-between gap-4">
-        <SectionHeading kicker="04 — Projects" title="Selected work." />
+        <SectionHeading kicker="04 — Projects" title="Selected work." reveal />
         <Link href="/projects" className="text-accent-text shrink-0 text-sm">
           All projects →
         </Link>

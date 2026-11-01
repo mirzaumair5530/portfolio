@@ -74,6 +74,14 @@ body {
     var(--glass-sheen), color-mix(in srgb, var(--accent) 18%, var(--glass-fill));
 }
 
+/* Reveal: hidden until GSAP shows it. Needs JS and allowed motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal]:not([data-revealed]),
+  html.js [data-reveal-stagger]:not([data-revealed]) > * {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

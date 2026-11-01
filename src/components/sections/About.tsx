@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { site } from "@/data/site";
 
@@ -13,7 +14,7 @@ export function About() {
       <div className="bg-surface border-border text-muted flex aspect-[4/5] max-w-72 items-center justify-center rounded-card border font-mono text-sm">
         [Your photo]
       </div>
-      <div className="flex flex-col justify-center gap-6">
+      <Reveal stagger className="flex flex-col justify-center gap-6">
         <SectionHeading kicker="01 — About" title={site.about.title} />
         <p className="text-muted max-w-xl leading-8">{site.about.body}</p>
         <ul className="grid gap-3 sm:grid-cols-3">
@@ -24,7 +25,7 @@ export function About() {
             </Card>
           ))}
         </ul>
-      </div>
+      </Reveal>
     </Container>
   );
 }

@@ -8,7 +8,11 @@ import { formatPeriod } from "@/lib/format";
 export function Experience() {
   return (
     <Container as="section" id="experience" className="scroll-mt-28 py-24">
-      <SectionHeading kicker="02 — Experience" title="Where I’ve worked." />
+      <SectionHeading
+        kicker="02 — Experience"
+        title="Where I’ve worked."
+        reveal
+      />
       <ol className="border-accent/40 mt-12 ml-2 space-y-6 border-l-2 pl-6 md:pl-10">
         {resume.experience.map((job, index) => (
           <li key={`${job.company}-${job.start}`} className="relative">
