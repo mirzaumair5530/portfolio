@@ -496,7 +496,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **M2.3** Build MDX loaders with gray-matter: list, get by slug, sort by date, validate.
 - [x] **M2.4** Hide drafts in production when `draft: true`.
 - [x] **M2.5** Add reading time and an automatic table of contents from headings.
-- [ ] **M2.6** Render MDX with next-mdx-remote and Shiki code highlighting, with a copy button on code blocks.
+- [x] **M2.6** Render MDX with next-mdx-remote and Shiki code highlighting, with a copy button on code blocks.
 - [ ] **M2.7** Add two sample projects and two sample posts so every page has data to show.
 
 **Done when:** the sample projects and posts render from files, an invalid frontmatter field fails the build with a clear message, and drafts are hidden in a production build.

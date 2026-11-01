@@ -87,3 +87,16 @@ body {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* Code highlighting: rehype-pretty-code emits --shiki-dark / --shiki-light. */
+[data-rehype-pretty-code-figure] {
+  margin: 0;
+}
+
+[data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-dark);
+}
+
+[data-theme="light"] [data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-light);
+}
