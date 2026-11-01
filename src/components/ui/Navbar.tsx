@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { homeLinks, navLinks, resumeLink } from "@/data/nav";
 import { cn } from "@/lib/cn";
+import { getLenis } from "@/lib/scroll";
 
 function isActive(pathname: string, href: string) {
   // Section anchors and "/#contact" are never the current page.
@@ -33,6 +34,7 @@ export function Navbar() {
     const controls = controlsRef.current;
     const menu = menuRef.current;
     document.body.style.overflow = "hidden";
+    getLenis()?.stop();
     menu?.querySelector<HTMLElement>("a")?.focus();
 
     function onKeyDown(event: KeyboardEvent) {
@@ -60,6 +62,7 @@ export function Navbar() {
     document.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = "";
+      getLenis()?.start();
       document.removeEventListener("keydown", onKeyDown);
       toggle?.focus();
     };

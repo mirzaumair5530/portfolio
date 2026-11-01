@@ -522,7 +522,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 **Goal:** smooth scrolling and section animations that stay fast and respect reduced motion.
 
-- [ ] **M4.1** Add Lenis smooth scroll and connect it to GSAP ScrollTrigger on one shared ticker.
+- [x] **M4.1** Add Lenis smooth scroll and connect it to GSAP ScrollTrigger on one shared ticker.
 - [ ] **M4.2** Add a Zustand store with scroll progress from 0 to 1 and the active section.
 - [ ] **M4.3** Build a reusable reveal animation (fade and lift, 0.05 to 0.1 s stagger) for headings, cards and lists.
 - [ ] **M4.4** Draw the experience timeline line as the page scrolls, with each role sliding in.
