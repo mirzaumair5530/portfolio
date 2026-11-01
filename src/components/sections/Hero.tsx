@@ -8,6 +8,7 @@ export function Hero() {
   return (
     <Container
       as="section"
+      id="hero"
       className="grid items-center gap-12 pb-24 md:grid-cols-2"
     >
       <div className="flex flex-col items-start gap-6">

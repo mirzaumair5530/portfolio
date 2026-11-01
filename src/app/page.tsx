@@ -5,6 +5,8 @@ import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Hero } from "@/components/sections/Hero";
 import { LatestPosts } from "@/components/sections/LatestPosts";
 import { Skills } from "@/components/sections/Skills";
+import { ProgressRail } from "@/components/ui/ProgressRail";
+import { ScrollSpy } from "@/components/ui/ScrollSpy";
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
       <FeaturedProjects />
       <LatestPosts />
       <Contact />
+      <ProgressRail />
+      <ScrollSpy />
     </>
   );
 }

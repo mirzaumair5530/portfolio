@@ -8,16 +8,24 @@ import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { homeLinks, navLinks, resumeLink } from "@/data/nav";
 import { cn } from "@/lib/cn";
 import { getLenis } from "@/lib/scroll";
+import { useScrollStore } from "@/store/scrollStore";
 
-function isActive(pathname: string, href: string) {
-  // Section anchors and "/#contact" are never the current page.
-  if (href.startsWith("#") || href.includes("#")) return false;
+function isActive(
+  pathname: string,
+  href: string,
+  activeSection: string | null,
+) {
+  // On the home page a section link is active while its section is in view.
+  if (href.startsWith("#")) return href === `#${activeSection}`;
+  // "/#contact" is never the current page.
+  if (href.includes("#")) return false;
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
 
 export function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const activeSection = useScrollStore((state) => state.activeSection);
   const links = isHome ? homeLinks : navLinks;
   const mobileLinks = isHome ? [...links, resumeLink] : links;
   const [open, setOpen] = useState(false);
@@ -89,7 +97,7 @@ export function Navbar() {
 
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((link) => {
-            const active = isActive(pathname, link.href);
+            const active = isActive(pathname, link.href, activeSection);
             return (
               <li key={link.href}>
                 <Link
@@ -158,7 +166,7 @@ export function Navbar() {
         >
           <ul className="flex flex-col items-center gap-6">
             {mobileLinks.map((link) => {
-              const active = isActive(pathname, link.href);
+              const active = isActive(pathname, link.href, activeSection);
               return (
                 <li key={link.href}>
                   <Link
