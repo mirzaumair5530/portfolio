@@ -1,4 +1,5 @@
 import { About } from "@/components/sections/About";
+import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Hero } from "@/components/sections/Hero";
@@ -14,6 +15,7 @@ export default function Home() {
       <Skills />
       <FeaturedProjects />
       <LatestPosts />
+      <Contact />
     </>
   );
 }
