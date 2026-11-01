@@ -491,7 +491,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 **Goal:** all content comes from files in the repository.
 
-- [ ] **M2.1** Create `src/data/site.ts` (name, tagline, links, SEO defaults) and `src/data/resume.ts` using the Resume type from this spec.
+- [x] **M2.1** Create `src/data/site.ts` (name, tagline, links, SEO defaults) and `src/data/resume.ts` using the Resume type from this spec.
 - [ ] **M2.2** Add Zod schemas for project and blog frontmatter.
 - [ ] **M2.3** Build MDX loaders with gray-matter: list, get by slug, sort by date, validate.
 - [ ] **M2.4** Hide drafts in production when `draft: true`.
