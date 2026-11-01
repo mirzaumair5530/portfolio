@@ -61,8 +61,8 @@ export function Crystal() {
 
   return (
     <>
-      <ambientLight intensity={0.6} />
-      <directionalLight position={[3, 4, 5]} intensity={2.2} />
+      <ambientLight intensity={1.1} />
+      <directionalLight position={[3, 4, 5]} intensity={2.6} />
       <pointLight ref={glow} position={[-3, -2, 2]} intensity={12} />
 
       <group>

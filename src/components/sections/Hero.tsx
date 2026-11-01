@@ -40,12 +40,13 @@ export function Hero() {
         </ul>
       </div>
 
-      <figure className="flex flex-col items-center gap-3">
+      {/* Static crystal: the fallback, hidden while the 3D scene is running. */}
+      <div
+        data-crystal-fallback
+        className="flex justify-center transition-opacity duration-700"
+      >
         <CrystalImage className="w-full max-w-sm" />
-        <figcaption className="text-muted font-mono text-xs">
-          Interactive 3D scene arrives in a later milestone
-        </figcaption>
-      </figure>
+      </div>
     </Container>
   );
 }

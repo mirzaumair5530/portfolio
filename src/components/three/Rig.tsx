@@ -95,10 +95,25 @@ export function Rig({ children }: { children: React.ReactNode }) {
     );
 
     // On phones the crystal sits centred and high, behind the text.
-    const x = (narrow ? 0 : pose.x * width) + mouse.smoothX * 0.35;
-    const y = (narrow ? height * 0.28 : pose.y * height) - mouse.smoothY * 0.2;
-    const scale = narrow ? pose.scale * 0.7 : pose.scale;
-    const dim = narrow ? Math.min(pose.dim, 0.5) : pose.dim;
+    let x = (narrow ? 0 : pose.x * width) + mouse.smoothX * 0.35;
+    let y = (narrow ? height * 0.28 : pose.y * height) - mouse.smoothY * 0.2;
+
+    // In the hero it takes the place of the static crystal image, wherever the
+    // layout puts it (beside the text on desktop, below it on phones).
+    const slot =
+      activeSection === "hero"
+        ? document.querySelector("[data-crystal-fallback]")
+        : null;
+    if (slot) {
+      const box = slot.getBoundingClientRect();
+      const ndcX = ((box.left + box.width / 2) / window.innerWidth) * 2 - 1;
+      const ndcY = 1 - ((box.top + box.height / 2) / window.innerHeight) * 2;
+      x = (ndcX * width) / 2 + mouse.smoothX * 0.35;
+      y = (ndcY * height) / 2 - mouse.smoothY * 0.2;
+    }
+
+    const scale = narrow ? pose.scale * (slot ? 0.9 : 0.7) : pose.scale;
+    const dim = narrow && !slot ? Math.min(pose.dim, 0.5) : pose.dim;
 
     target.position.x = THREE.MathUtils.damp(
       target.position.x,

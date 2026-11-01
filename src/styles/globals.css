@@ -74,6 +74,11 @@ body {
     var(--glass-sheen), color-mix(in srgb, var(--accent) 18%, var(--glass-fill));
 }
 
+/* The 3D scene replaces the static crystal while it runs. */
+html[data-scene="on"] [data-crystal-fallback] {
+  opacity: 0;
+}
+
 /* Reveal: hidden until GSAP shows it. Needs JS and allowed motion. */
 @media (prefers-reduced-motion: no-preference) {
   html.js [data-reveal]:not([data-revealed]),

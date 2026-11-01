@@ -543,7 +543,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **M5.4** Add mouse parallax in the hero, on desktop only.
 - [x] **M5.5** Make the scene theme-aware by reading its colours from the CSS tokens.
 - [x] **M5.6** Add performance guards: cap the device pixel ratio at 1.5 to 2, pause when the tab is hidden or the canvas is off-screen, and dispose geometries on unmount.
-- [ ] **M5.7** Add fallbacks: a static crystal image for small or low-end devices, when WebGL is missing, and when reduced motion is on.
+- [x] **M5.7** Add fallbacks: a static crystal image for small or low-end devices, when WebGL is missing, and when reduced motion is on.
 - [ ] **M5.8** Turn the scene off on `/resume` and on blog posts.
 
 **Done when:** hero text appears before the 3D loads, the scene runs smoothly on a real phone, the fallback shows with WebGL disabled, and Lighthouse mobile Performance stays at 90 or more.

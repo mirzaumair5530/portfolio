@@ -6,7 +6,7 @@ import { Crystal } from "@/components/three/Crystal";
 import { Rig } from "@/components/three/Rig";
 
 // One fixed canvas behind the page.
-export default function Scene() {
+export default function Scene({ onFail }: { onFail: () => void }) {
   const wrapper = useRef<HTMLDivElement>(null);
   const [tabVisible, setTabVisible] = useState(true);
   const [onScreen, setOnScreen] = useState(true);
@@ -27,6 +27,14 @@ export default function Scene() {
     };
   }, []);
 
+  // While the scene is live, the static crystal in the hero fades out.
+  useEffect(() => {
+    document.documentElement.dataset.scene = "on";
+    return () => {
+      delete document.documentElement.dataset.scene;
+    };
+  }, []);
+
   return (
     <div
       ref={wrapper}
@@ -39,6 +47,9 @@ export default function Scene() {
         dpr={[1, 1.5]}
         frameloop={tabVisible && onScreen ? "always" : "never"}
         gl={{ alpha: true, powerPreference: "low-power" }}
+        onCreated={({ gl }) =>
+          gl.domElement.addEventListener("webglcontextlost", onFail)
+        }
       >
         <Rig>
           <Crystal />
