@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { BackdropShapes } from "@/components/ui/BackdropShapes";
+import { SceneLoader } from "@/components/three/SceneLoader";
 import { Footer } from "@/components/ui/Footer";
 import { Navbar } from "@/components/ui/Navbar";
 import { ScrollSync } from "@/components/ui/ScrollSync";
@@ -58,6 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SmoothScroll />
           <ScrollSync />
           <BackdropShapes />
+          <SceneLoader />
           <Navbar />
           <main id="main" className="flex-1 pt-32 print:pt-0">
             {children}

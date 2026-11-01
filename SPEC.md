@@ -537,7 +537,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 **Goal:** a lightweight, scroll-driven 3D scene that never blocks content.
 
-- [ ] **M5.1** Add `three`, React Three Fiber and drei. Build a fixed Canvas client component loaded with `next/dynamic` and `ssr: false` after first paint.
+- [x] **M5.1** Add `three`, React Three Fiber and drei. Build a fixed Canvas client component loaded with `next/dynamic` and `ssr: false` after first paint.
 - [ ] **M5.2** Build the crystal in code (low-poly geometry in the theme colours) with soft lighting. No model file is needed in v1.
 - [ ] **M5.3** Drive the camera and object rotation from the scroll store, following the 3D and scroll effects table.
 - [ ] **M5.4** Add mouse parallax in the hero, on desktop only.
