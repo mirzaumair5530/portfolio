@@ -80,7 +80,7 @@ export function Navbar() {
     <header className="fixed inset-x-0 top-4 z-50 px-4 print:hidden">
       <nav
         aria-label="Main"
-        className="glass mx-auto flex h-14 max-w-4xl items-center justify-between rounded-full pr-2 pl-6"
+        className="glass relative z-[60] mx-auto flex h-14 max-w-4xl items-center justify-between rounded-full pr-2 pl-6"
       >
         <Link
           href="/"
@@ -162,7 +162,7 @@ export function Navbar() {
           role="dialog"
           aria-modal="true"
           aria-label="Menu"
-          className="bg-background fixed inset-0 z-[55] flex flex-col items-center justify-center gap-8 md:hidden"
+          className="glass-scrim fixed inset-0 z-[55] flex flex-col items-center justify-center gap-8 md:hidden"
         >
           <ul className="flex flex-col items-center gap-6">
             {mobileLinks.map((link) => {
