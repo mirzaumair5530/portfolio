@@ -12,7 +12,7 @@ Rules for AI coding tools working on Umair Farooq's portfolio.
 
 ## Project status
 
-- M1 (Foundation), M2 (Content) and M3 (Pages) are done; M0.7 (Vercel import) is still open. Next is M4 (Scroll). All routes are built without 3D or scroll animation. The contact form is layout only (wired in M6) and the hero shows a static `CrystalImage` SVG (replaced in M5).
+- M1 to M4 (Foundation, Content, Pages, Scroll) are done; M0.7 (Vercel import) is still open. Next is M5 (3D). All routes exist; scroll animation is in. The contact form is layout only (wired in M6) and the hero shows a static `CrystalImage` SVG (replaced in M5).
 - `SPEC.md` is the source of truth for milestones and tasks; work is tracked there by ticking tasks.
 - `specs/` (untracked) holds the Blue Glass design reference (HTML and PDF). `public/` still contains only the default create-next-app SVGs.
 - `src/data/site.ts` and `src/data/resume.ts` hold placeholder values (email, links, roles) until M7.
@@ -22,6 +22,7 @@ Rules for AI coding tools working on Umair Farooq's portfolio.
 - **Theming:** `data-theme` on `<html>` ("dark" default) switches the CSS variables in `src/styles/tokens.css` (Blue Glass palette). Components use the Tailwind names mapped in `globals.css` (`bg-background`, `text-muted`, `bg-accent`, ...) and the `glass` / `glass-accent` utilities, never raw colours. An inline script in `ThemeScript` sets the theme before first paint; `ThemeProvider` reads and writes it. `dark:` is bound to `data-theme`, not the system setting.
 - **Shell:** `src/app/layout.tsx` wraps every route in `Navbar`, `<main id="main">` and `Footer`, over `BackdropShapes`. Shared UI is in `src/components/ui`; nav links are in `src/data/nav.ts`.
 - **Pages:** the home page composes `src/components/sections/*` (anchors `#about`, `#experience`, `#projects`, `#blog`, `#contact`; the navbar swaps to these links on `/`). `/projects` and `/blog` pass only summaries (no MDX body) to client components that do the filtering, search and pagination. `public/umair-farooq-resume.pdf` is a placeholder PDF.
+- **Scroll and motion:** `SmoothScroll` runs Lenis on GSAP's ticker (`src/lib/scroll.ts`) only while `prefers-reduced-motion` allows. `ScrollSync` feeds `src/store/scrollStore.ts` (progress, active home section); `ScrollSpy` and `ProgressRail` are mounted on the home page. `Reveal` fades content in; its hidden state is CSS (`html.js [data-reveal]`) and applies only when motion is allowed, so reduced-motion visitors get the final layout. Every animation sits inside `gsap.matchMedia` / `useGSAP` so it is reverted on route change. Never animate an element that has its own hover transform; animate its wrapper.
 - **Content pipeline:** `src/content/{projects,blog}/*.mdx` -> `src/lib/mdx.ts` (gray-matter, validated by the strict Zod schemas in `src/lib/content-schema.ts`) -> `MdxContent` (next-mdx-remote/rsc, rehype-slug, rehype-pretty-code with dual Shiki themes). Invalid frontmatter throws and fails the build. Drafts are hidden when `NODE_ENV=production`. `src/lib/reading.ts` gives reading time and the table of contents; its ids match rehype-slug.
 
 ## Next.js gotchas (Cache Components is on)
