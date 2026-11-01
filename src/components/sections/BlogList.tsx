@@ -65,7 +65,7 @@ export function BlogList({ posts }: { posts: PostSummary[] }) {
 
       {featured ? (
         <article className="glass rounded-card relative mt-8 grid overflow-hidden md:grid-cols-2">
-          <div className="text-accent-text flex aspect-video items-center justify-center bg-[#12306a] font-mono text-xs md:aspect-auto">
+          <div className="text-[#9cc2ff] flex aspect-video items-center justify-center bg-[#12306a] font-mono text-xs md:aspect-auto">
             [Cover image]
           </div>
           <div className="flex flex-col justify-center gap-3 p-6 md:p-8">

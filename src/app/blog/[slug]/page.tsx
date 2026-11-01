@@ -69,7 +69,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
       )}
       <Cover src={fm.cover} label="Cover image" className="mt-10" />
 
-      <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_16rem]">
+      <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_16rem]">
         <div className="min-w-0 lg:order-first">
           <article className="max-w-3xl">
             <MdxContent source={content} />

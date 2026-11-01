@@ -56,7 +56,7 @@ export default async function ProjectPage({
       </p>
       <Cover src={fm.cover} label="Cover image" className="mt-10" />
 
-      <div className="mt-12 grid gap-10 lg:grid-cols-[14rem_1fr]">
+      <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[14rem_1fr]">
         <aside className="flex flex-col gap-6">
           <dl className="flex flex-col gap-5">
             <div>
@@ -98,7 +98,7 @@ export default async function ProjectPage({
           )}
         </aside>
 
-        <article className="max-w-3xl">
+        <article className="min-w-0 max-w-3xl">
           <MdxContent source={content} />
         </article>
       </div>

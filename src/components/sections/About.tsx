@@ -10,7 +10,7 @@ export function About() {
       id="about"
       className="grid scroll-mt-28 gap-10 py-24 md:grid-cols-[18rem_1fr]"
     >
-      <div className="bg-surface border-border text-muted flex aspect-[4/5] items-center justify-center rounded-card border font-mono text-sm">
+      <div className="bg-surface border-border text-muted flex aspect-[4/5] max-w-72 items-center justify-center rounded-card border font-mono text-sm">
         [Your photo]
       </div>
       <div className="flex flex-col justify-center gap-6">

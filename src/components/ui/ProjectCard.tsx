@@ -43,7 +43,7 @@ export function ProjectCard({
             className="object-cover"
           />
         ) : (
-          <span className="text-accent-text absolute inset-0 flex items-center justify-center font-mono text-xs">
+          <span className="text-[#9cc2ff] absolute inset-0 flex items-center justify-center font-mono text-xs">
             [Project cover]
           </span>
         )}

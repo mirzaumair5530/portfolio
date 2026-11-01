@@ -112,10 +112,7 @@ export function Navbar() {
         >
           <ThemeToggle />
           {isHome && (
-            <Button
-              href={resumeLink.href}
-              className="hidden h-10 md:inline-flex"
-            >
+            <Button href={resumeLink.href} className="h-10 max-md:hidden">
               {resumeLink.label}
             </Button>
           )}

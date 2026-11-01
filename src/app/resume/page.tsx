@@ -28,7 +28,7 @@ function Section({
 export default function ResumePage() {
   return (
     <Container>
-      <div className="grid gap-8 md:grid-cols-[1fr_auto]">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto]">
         <div className="max-w-3xl">
           <header className="pb-8">
             <p className="text-accent-2 font-mono text-xs tracking-widest uppercase">
