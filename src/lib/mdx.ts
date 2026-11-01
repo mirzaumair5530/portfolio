@@ -21,9 +21,15 @@ export type ContentEntry<T> = {
 export type Project = ContentEntry<ProjectFrontmatter>;
 export type Post = ContentEntry<PostFrontmatter>;
 
+// Drafts show in development and are hidden in production builds.
+const showDrafts = process.env.NODE_ENV !== "production";
+
 // Reads every `<slug>.mdx` in a content folder and validates its frontmatter.
 // An invalid field throws, which fails the build with the file name and field.
-function loadAll<T>(folder: string, schema: z.ZodType<T>): ContentEntry<T>[] {
+function loadAll<T extends { draft: boolean }>(
+  folder: string,
+  schema: z.ZodType<T>,
+): ContentEntry<T>[] {
   const dir = path.join(CONTENT_DIR, folder);
   if (!fs.existsSync(dir)) return [];
 
@@ -46,7 +52,8 @@ function loadAll<T>(folder: string, schema: z.ZodType<T>): ContentEntry<T>[] {
         frontmatter: parsed.data,
         content,
       };
-    });
+    })
+    .filter((entry) => showDrafts || !entry.frontmatter.draft);
 }
 
 /** Projects sorted by `order`, then title. */
