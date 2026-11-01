@@ -528,7 +528,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **M4.4** Draw the experience timeline line as the page scrolls, with each role sliding in.
 - [x] **M4.5** Pin the projects section and scale cards as they enter. Horizontal scroll is optional.
 - [x] **M4.6** Add the side progress rail and highlight the active section in the navbar.
-- [ ] **M4.7** Handle `prefers-reduced-motion`: turn off smooth scroll, pinning and reveals, and show the final layout.
+- [x] **M4.7** Handle `prefers-reduced-motion`: turn off smooth scroll, pinning and reveals, and show the final layout.
 - [ ] **M4.8** Clean up all ScrollTrigger instances on route changes.
 
 **Done when:** scrolling feels smooth on a real mid-range phone, Cumulative Layout Shift stays under 0.1, and the site shows its static layout when reduced motion is on.
