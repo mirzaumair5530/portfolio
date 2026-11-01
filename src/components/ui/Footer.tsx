@@ -4,7 +4,7 @@ import { navLinks } from "@/data/nav";
 
 export function Footer() {
   return (
-    <footer className="border-border mt-24 border-t py-12">
+    <footer className="print:hidden border-border mt-24 border-t py-12">
       <Container className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
         <div className="flex max-w-sm flex-col gap-2">
           <p className="font-heading text-foreground text-lg font-bold">

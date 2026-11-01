@@ -55,7 +55,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </a>
           <BackdropShapes />
           <Navbar />
-          <main id="main" className="flex-1 pt-32">
+          <main id="main" className="flex-1 pt-32 print:pt-0">
             {children}
           </main>
           <Footer />

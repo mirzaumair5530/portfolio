@@ -100,3 +100,21 @@ body {
 [data-theme="light"] [data-rehype-pretty-code-figure] code span {
   color: var(--shiki-light);
 }
+
+/* Print: plain black on white, no glass or backdrop. */
+@media print {
+  :root,
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    --bg: #fff;
+    --text: #000;
+    --muted: #333;
+    --accent-2: #333;
+    --border: rgb(0 0 0 / 0.2);
+    --glass-fill: transparent;
+    --glass-sheen: none;
+    --glass-edge: none;
+    --glass-shadow: none;
+    --glass-filter: none;
+  }
+}

@@ -66,7 +66,7 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 px-4">
+    <header className="fixed inset-x-0 top-4 z-50 px-4 print:hidden">
       <nav
         aria-label="Main"
         className="glass mx-auto flex h-14 max-w-4xl items-center justify-between rounded-full pr-2 pl-6"

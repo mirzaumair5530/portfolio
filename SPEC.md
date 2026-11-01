@@ -513,7 +513,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **M3.6** `/projects/[slug]`: detail layout with sidebar, sections and previous and next links.
 - [x] **M3.7** `/blog`: featured post, list, tag filter, search by title and pagination.
 - [x] **M3.8** `/blog/[slug]`: article, table of contents, share links and previous and next links.
-- [ ] **M3.9** `/resume`: page built from `resume.ts`, a PDF download button and print-friendly styles.
+- [x] **M3.9** `/resume`: page built from `resume.ts`, a PDF download button and print-friendly styles.
 - [ ] **M3.10** Responsive pass at 360, 768, 1024 and 1440 px, in dark and light.
 
 **Done when:** each page matches the UI designs at 1440 and 390 px in both themes, and nothing scrolls horizontally at 360 px.
