@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { BackdropShapes } from "@/components/ui/BackdropShapes";
+import { Footer } from "@/components/ui/Footer";
 import { Navbar } from "@/components/ui/Navbar";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { ThemeScript } from "@/components/ui/ThemeScript";
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <main id="main" className="flex-1 pt-32">
             {children}
           </main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
