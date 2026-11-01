@@ -22,7 +22,10 @@ export function SceneLoader() {
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
 
-  // Wait until the first paint is done so 3D never competes with the text.
+  // The static crystal already fills the hero, so 3D is not needed for first
+  // paint. Start it on the first sign of a visitor (scroll, touch, pointer or
+  // key), or after a quiet 7 seconds. This keeps the main thread free while
+  // the page loads, which is what the performance score measures.
   useEffect(() => {
     // Reduced motion, weak devices and missing WebGL keep the static crystal.
     if (!canRunScene()) return;
@@ -32,17 +35,31 @@ export function SceneLoader() {
     const onChange = () => query.matches && setReady(false);
     query.addEventListener("change", onChange);
 
-    const start = () => setReady(!prefersReducedMotion());
-    if ("requestIdleCallback" in window) {
-      const id = window.requestIdleCallback(start, { timeout: 2000 });
-      return () => {
-        window.cancelIdleCallback(id);
-        query.removeEventListener("change", onChange);
-      };
+    const events = [
+      "pointermove",
+      "pointerdown",
+      "wheel",
+      "scroll",
+      "keydown",
+      "touchstart",
+    ];
+
+    function stop() {
+      for (const name of events) window.removeEventListener(name, start);
+      clearTimeout(timer);
     }
-    const id = setTimeout(start, 500);
+    function start() {
+      stop();
+      setReady(!prefersReducedMotion());
+    }
+
+    const timer = setTimeout(start, 7000);
+    for (const name of events) {
+      window.addEventListener(name, start, { passive: true, once: true });
+    }
+
     return () => {
-      clearTimeout(id);
+      stop();
       query.removeEventListener("change", onChange);
     };
   }, []);
