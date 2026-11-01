@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
 import { z } from "zod";
+import { getReadingTime } from "@/lib/reading";
 import {
   postSchema,
   projectSchema,
@@ -16,6 +17,8 @@ export type ContentEntry<T> = {
   frontmatter: T;
   /** MDX body without the frontmatter block. */
   content: string;
+  /** Whole minutes. */
+  readingTime: number;
 };
 
 export type Project = ContentEntry<ProjectFrontmatter>;
@@ -51,6 +54,7 @@ function loadAll<T extends { draft: boolean }>(
         slug: file.replace(/\.mdx$/, ""),
         frontmatter: parsed.data,
         content,
+        readingTime: getReadingTime(content),
       };
     })
     .filter((entry) => showDrafts || !entry.frontmatter.draft);
