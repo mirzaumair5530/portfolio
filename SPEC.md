@@ -510,7 +510,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **M3.3** Home: featured projects (from the `featured` flag) and latest posts.
 - [x] **M3.4** Home: contact section, layout only. The form is wired in M6.
 - [x] **M3.5** `/projects`: card grid with a technology filter.
-- [ ] **M3.6** `/projects/[slug]`: detail layout with sidebar, sections and previous and next links.
+- [x] **M3.6** `/projects/[slug]`: detail layout with sidebar, sections and previous and next links.
 - [ ] **M3.7** `/blog`: featured post, list, tag filter, search by title and pagination.
 - [ ] **M3.8** `/blog/[slug]`: article, table of contents, share links and previous and next links.
 - [ ] **M3.9** `/resume`: page built from `resume.ts`, a PDF download button and print-friendly styles.
