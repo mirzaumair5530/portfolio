@@ -6,14 +6,16 @@ Rules for AI coding tools working on Umair Farooq's portfolio.
 
 - Read `SPEC.md` before each task.
 - Do only the task you were given. Do not start other tasks or milestones.
-- Run `npm run lint` and `npm run build` before finishing any task, and fix any failures.
+- Run `pnpm lint` and `pnpm build` before finishing any task, and fix any failures.
+- Use pnpm only. Do not use npm or yarn, and do not commit `package-lock.json` or `yarn.lock`.
 - This Next.js version has breaking changes. See `AGENTS.md` and `node_modules/next/dist/docs/` before writing Next.js code.
 
 ## Stack
 
+- Node.js 24 (see `.nvmrc`) and pnpm 12 (pinned in `packageManager`).
 - Next.js (App Router), React, TypeScript in strict mode.
 - Tailwind CSS, with design tokens as CSS variables (added in M1).
-- ESLint and Prettier (`npm run lint`, `npm run format`).
+- ESLint and Prettier (`pnpm lint`, `pnpm format`).
 - Deployed on Vercel from GitHub.
 - Added in later milestones, not yet installed: three, @react-three/fiber, @react-three/drei, GSAP with ScrollTrigger, Lenis, Motion, MDX (gray-matter, next-mdx-remote, rehype-pretty-code), Zod, Resend and Zustand.
 

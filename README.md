@@ -2,16 +2,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+This project uses Node.js 24 (`.nvmrc`) and pnpm 12. Enable pnpm once with `corepack enable`, then install and run the development server:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+nvm use          # or: fnm use
+corepack enable
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

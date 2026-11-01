@@ -463,15 +463,15 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 **Goal:** a working project with an empty live preview URL.
 
-- [ ] **M0.1** Create a private GitHub repository and clone it.
-- [ ] **M0.2** Scaffold Next.js (App Router) with TypeScript and Tailwind CSS.
-- [ ] **M0.3** Add ESLint and Prettier, with `npm run lint` and `npm run format` scripts.
-- [ ] **M0.4** Add `SPEC.md` (this document) and `CLAUDE.md` (stack, folder structure, conventions, and "run lint and build before finishing").
-- [ ] **M0.5** Create the folder structure from this spec, with empty placeholder files.
-- [ ] **M0.6** Add `.env.example` with variable names only.
+- [x] **M0.1** Create a private GitHub repository and clone it.
+- [x] **M0.2** Scaffold Next.js (App Router) with TypeScript and Tailwind CSS.
+- [x] **M0.3** Add ESLint and Prettier, with `pnpm lint` and `pnpm format` scripts.
+- [x] **M0.4** Add `SPEC.md` (this document) and `CLAUDE.md` (stack, folder structure, conventions, and "run lint and build before finishing").
+- [x] **M0.5** Create the folder structure from this spec, with empty placeholder files.
+- [x] **M0.6** Add `.env.example` with variable names only.
 - [ ] **M0.7** Import the repository in Vercel and confirm a preview URL deploys.
 
-**Done when:** `npm run build` and `npm run lint` pass, and the preview URL shows the default page.
+**Done when:** `pnpm build` and `pnpm lint` pass, and the preview URL shows the default page.
 
 ### M1 · Foundation
 

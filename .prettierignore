@@ -3,6 +3,6 @@ node_modules
 out
 build
 public
-package-lock.json
+pnpm-lock.yaml
 specs
 SPEC.md
