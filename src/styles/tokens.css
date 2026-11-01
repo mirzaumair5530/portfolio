@@ -1,1 +1,80 @@
-/* Placeholder: design tokens (built in M1.1). */
+/*
+ * Design tokens (SPEC: Design system, Blue Glass palette).
+ * The theme is switched by `data-theme` on <html>. Dark is the default.
+ * To change palette, edit the values here; components only use the variables.
+ */
+
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #070d1c;
+  --surface: #0e1730;
+  --text: #eaf1ff;
+  --muted: #b7c6e4;
+  --accent: #3d8bff;
+  --accent-contrast: #070d1c;
+  --accent-text: #6aa7ff;
+  --accent-2: #8fd3f4;
+  --border: rgb(255 255 255 / 0.22);
+
+  --glass-fill: rgb(8 16 40 / 0.42);
+  --glass-sheen: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 0.2) 0%,
+    rgb(255 255 255 / 0.04) 50%,
+    rgb(255 255 255 / 0.14) 100%
+  );
+  --glass-filter: blur(var(--glass-blur)) saturate(180%) brightness(0.9);
+  --glass-edge:
+    inset 1.5px 1.5px 0 rgb(255 255 255 / 0.45),
+    inset -1px -1px 0 rgb(255 255 255 / 0.12),
+    inset 0 0 20px rgb(255 255 255 / 0.06);
+  --glass-shadow: 0 16px 40px rgb(0 0 0 / 0.35);
+
+  --shape-1: rgb(61 139 255 / 0.7);
+  --shape-2: rgb(20 48 95 / 0.7);
+  --shape-3: rgb(143 211 244 / 0.25);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #eef4ff;
+  --surface: #ffffff;
+  --text: #0b1630;
+  --muted: #44587d;
+  --accent: #1f5fd6;
+  --accent-contrast: #ffffff;
+  --accent-text: #1f5fd6;
+  --accent-2: #0b6f94;
+  --border: rgb(255 255 255 / 0.6);
+
+  --glass-fill: rgb(255 255 255 / 0.45);
+  --glass-sheen: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 0.7) 0%,
+    rgb(255 255 255 / 0.1) 50%,
+    rgb(255 255 255 / 0.4) 100%
+  );
+  --glass-filter: blur(var(--glass-blur)) saturate(180%);
+  --glass-edge:
+    inset 1.5px 1.5px 0 rgb(255 255 255 / 0.8),
+    inset -1px -1px 0 rgb(11 22 48 / 0.08);
+  --glass-shadow: 0 16px 40px rgb(20 50 110 / 0.15);
+
+  --shape-1: rgb(106 167 255 / 0.4);
+  --shape-2: rgb(143 211 244 / 0.4);
+  --shape-3: rgb(106 167 255 / 0.3);
+}
+
+:root {
+  --glass-blur: 24px;
+}
+
+/* Smaller blur on phones (SPEC: Liquid Glass style). */
+@media (max-width: 767px) {
+  :root {
+    --glass-blur: 14px;
+  }
+}

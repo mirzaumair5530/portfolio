@@ -477,7 +477,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 **Goal:** the shell that every page shares.
 
-- [ ] **M1.1** Add design tokens as CSS variables for the dark and light themes, mapped into Tailwind (see Design system), including the glass tokens.
+- [x] **M1.1** Add design tokens as CSS variables for the dark and light themes, mapped into Tailwind (see Design system), including the glass tokens.
 - [ ] **M1.2** Self-host Space Grotesk, Inter and JetBrains Mono with `font-display: swap`.
 - [ ] **M1.3** Build the theme provider: `data-theme` on the root, first visit follows the system, choice saved, no flash on load.
 - [ ] **M1.4** Build the floating glass navbar: desktop links, active-page underline, theme toggle, Resume button, and a full-screen mobile menu.
