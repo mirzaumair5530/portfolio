@@ -5,15 +5,20 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
-import { navLinks, resumeLink } from "@/data/nav";
+import { homeLinks, navLinks, resumeLink } from "@/data/nav";
 import { cn } from "@/lib/cn";
 
 function isActive(pathname: string, href: string) {
+  // Section anchors and "/#contact" are never the current page.
+  if (href.startsWith("#") || href.includes("#")) return false;
   return href === "/" ? pathname === "/" : pathname.startsWith(href);
 }
 
 export function Navbar() {
   const pathname = usePathname();
+  const isHome = pathname === "/";
+  const links = isHome ? homeLinks : navLinks;
+  const mobileLinks = isHome ? [...links, resumeLink] : links;
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const controlsRef = useRef<HTMLDivElement>(null);
@@ -68,13 +73,19 @@ export function Navbar() {
       >
         <Link
           href="/"
-          className="font-heading text-foreground text-lg font-bold tracking-tight"
+          className="font-heading text-foreground flex items-center gap-3 text-lg font-bold tracking-tight"
         >
+          <span
+            aria-hidden="true"
+            className="text-accent-text border-accent/40 bg-accent/10 flex size-8 items-center justify-center rounded-lg border font-mono text-xs"
+          >
+            UF
+          </span>
           Umair Farooq
         </Link>
 
         <ul className="hidden items-center gap-8 md:flex">
-          {navLinks.map((link) => {
+          {links.map((link) => {
             const active = isActive(pathname, link.href);
             return (
               <li key={link.href}>
@@ -100,9 +111,14 @@ export function Navbar() {
           className="relative z-[60] flex items-center gap-2"
         >
           <ThemeToggle />
-          <Button href={resumeLink.href} className="hidden h-10 md:inline-flex">
-            {resumeLink.label}
-          </Button>
+          {isHome && (
+            <Button
+              href={resumeLink.href}
+              className="hidden h-10 md:inline-flex"
+            >
+              {resumeLink.label}
+            </Button>
+          )}
           <button
             ref={toggleRef}
             type="button"
@@ -141,7 +157,7 @@ export function Navbar() {
           className="bg-background fixed inset-0 z-[55] flex flex-col items-center justify-center gap-8 md:hidden"
         >
           <ul className="flex flex-col items-center gap-6">
-            {[...navLinks, resumeLink].map((link) => {
+            {mobileLinks.map((link) => {
               const active = isActive(pathname, link.href);
               return (
                 <li key={link.href}>

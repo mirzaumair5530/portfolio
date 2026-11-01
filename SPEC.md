@@ -505,7 +505,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 **Goal:** every page built without 3D or scroll animation, matching the [Portfolio UI designs](https://claude.ai/artifact/J8pN3tDqsZ6QzDe9MEcetm).
 
-- [ ] **M3.1** Home: hero and about. The hero shows a static crystal image as a stand-in for the 3D scene.
+- [x] **M3.1** Home: hero and about. The hero shows a static crystal image as a stand-in for the 3D scene.
 - [ ] **M3.2** Home: experience timeline (reads `resume.ts`) and skills.
 - [ ] **M3.3** Home: featured projects (from the `featured` flag) and latest posts.
 - [ ] **M3.4** Home: contact section, layout only. The form is wired in M6.

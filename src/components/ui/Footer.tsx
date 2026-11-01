@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
-import { navLinks, resumeLink } from "@/data/nav";
+import { navLinks } from "@/data/nav";
 
 export function Footer() {
   return (
@@ -17,7 +17,7 @@ export function Footer() {
 
         <nav aria-label="Footer">
           <ul className="flex flex-wrap gap-x-8 gap-y-3">
-            {[...navLinks, resumeLink].map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
