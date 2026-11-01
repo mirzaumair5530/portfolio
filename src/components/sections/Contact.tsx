@@ -23,10 +23,10 @@ export function Contact() {
             <a href={`mailto:${site.email}`}>{site.email}</a>
           </li>
           <li>
-            <a href={site.links.github}>GitHub · [username]</a>
+            <a href={site.links.github}>GitHub · {site.handles.github}</a>
           </li>
           <li>
-            <a href={site.links.linkedin}>LinkedIn · [username]</a>
+            <a href={site.links.linkedin}>LinkedIn · {site.handles.linkedin}</a>
           </li>
         </ul>
       </Reveal>

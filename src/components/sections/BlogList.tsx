@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { FilterPills } from "@/components/ui/FilterPills";
@@ -65,8 +66,18 @@ export function BlogList({ posts }: { posts: PostSummary[] }) {
 
       {featured ? (
         <article className="glass rounded-card relative mt-8 grid overflow-hidden md:grid-cols-2">
-          <div className="text-[#9cc2ff] flex aspect-video items-center justify-center bg-[#12306a] font-mono text-xs md:aspect-auto">
-            [Cover image]
+          <div className="relative flex aspect-video items-center justify-center bg-[#12306a] font-mono text-xs text-[#9cc2ff] md:aspect-auto">
+            {featured.frontmatter.cover ? (
+              <Image
+                src={featured.frontmatter.cover}
+                alt={featured.frontmatter.coverAlt ?? ""}
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
+            ) : (
+              "[Cover image]"
+            )}
           </div>
           <div className="flex flex-col justify-center gap-3 p-6 md:p-8">
             <p className="text-accent-2 font-mono text-xs uppercase">

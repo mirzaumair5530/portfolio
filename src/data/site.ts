@@ -8,6 +8,8 @@ export const site = {
     github: "https://github.com/",
     linkedin: "https://www.linkedin.com/",
   },
+  // Shown next to the links in the contact section.
+  handles: { github: "[username]", linkedin: "[username]" },
   resumePdf: "/umair-farooq-resume.pdf",
   hero: {
     badge: "Software engineer · React · MEAN stack",
@@ -17,6 +19,9 @@ export const site = {
     stack: ["React", "Node.js", "Express", "MongoDB", "Angular"],
   },
   about: {
+    // Set to { src: "/umair.jpg", alt: "Umair at his desk" } once the photo
+    // is in public/. Until then a labelled placeholder shows.
+    photo: null as { src: string; alt: string } | null,
     title: "Full-stack engineer who cares about the details.",
     body: "I'm a software engineer who builds web applications end to end with React and the MEAN stack. [Add two sentences about what you enjoy building and how you work.]",
     facts: [

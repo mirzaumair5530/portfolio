@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
@@ -11,8 +12,18 @@ export function About() {
       id="about"
       className="grid scroll-mt-28 gap-10 py-24 md:grid-cols-[18rem_1fr]"
     >
-      <div className="bg-surface border-border text-muted flex aspect-[4/5] max-w-72 items-center justify-center rounded-card border font-mono text-sm">
-        [Your photo]
+      <div className="bg-surface border-border text-muted rounded-card relative flex aspect-[4/5] max-w-72 items-center justify-center overflow-hidden border font-mono text-sm">
+        {site.about.photo ? (
+          <Image
+            src={site.about.photo.src}
+            alt={site.about.photo.alt}
+            fill
+            sizes="288px"
+            className="object-cover"
+          />
+        ) : (
+          "[Your photo]"
+        )}
       </div>
       <Reveal stagger className="flex flex-col justify-center gap-6">
         <SectionHeading kicker="01 — About" title={site.about.title} />

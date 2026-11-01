@@ -57,7 +57,12 @@ export default async function ProjectPage({
       <p className="text-muted mt-6 max-w-2xl text-lg leading-8">
         {fm.summary}
       </p>
-      <Cover src={fm.cover} label="Cover image" className="mt-10" />
+      <Cover
+        src={fm.cover}
+        alt={fm.coverAlt}
+        label="Cover image"
+        className="mt-10"
+      />
 
       <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[14rem_1fr]">
         <aside className="flex flex-col gap-6">

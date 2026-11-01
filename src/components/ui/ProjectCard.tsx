@@ -37,7 +37,7 @@ export function ProjectCard({
         {fm.cover ? (
           <Image
             src={fm.cover}
-            alt=""
+            alt={fm.coverAlt ?? ""}
             fill
             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
             className="object-cover"

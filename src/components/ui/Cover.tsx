@@ -4,10 +4,13 @@ import { cn } from "@/lib/cn";
 // Large cover for detail pages; a labelled block stands in until one is set.
 export function Cover({
   src,
+  alt = "",
   label,
   className,
 }: {
   src?: string;
+  /** Describes the image; the content schema requires it when a cover is set. */
+  alt?: string;
   label: string;
   className?: string;
 }) {
@@ -21,7 +24,7 @@ export function Cover({
       {src ? (
         <Image
           src={src}
-          alt=""
+          alt={alt}
           fill
           priority
           sizes="(min-width: 1152px) 1088px, 100vw"

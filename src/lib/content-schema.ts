@@ -21,11 +21,16 @@ export const projectSchema = z
     stack: z.array(z.string().min(1)).min(1),
     featured: z.boolean().default(false),
     cover: z.string().optional(),
+    coverAlt: z.string().min(1).optional(),
     links: z.array(link).default([]),
     order: z.number().default(0),
     draft: z.boolean().default(false),
   })
-  .strict();
+  .strict()
+  .refine((data) => !data.cover || data.coverAlt, {
+    message: "A cover image needs coverAlt (alt text describing it).",
+    path: ["coverAlt"],
+  });
 
 export const postSchema = z
   .object({
@@ -35,8 +40,13 @@ export const postSchema = z
     tags: z.array(z.string().min(1)).default([]),
     draft: z.boolean().default(false),
     cover: z.string().optional(),
+    coverAlt: z.string().min(1).optional(),
   })
-  .strict();
+  .strict()
+  .refine((data) => !data.cover || data.coverAlt, {
+    message: "A cover image needs coverAlt (alt text describing it).",
+    path: ["coverAlt"],
+  });
 
 export type ProjectFrontmatter = z.infer<typeof projectSchema>;
 export type PostFrontmatter = z.infer<typeof postSchema>;
