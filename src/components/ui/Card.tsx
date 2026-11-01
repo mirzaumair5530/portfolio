@@ -1,0 +1,2 @@
+// Placeholder: Card component (built in M1.6).
+export {};
