@@ -28,6 +28,11 @@ export default function BlogPage() {
         shipping.
       </p>
       <BlogList posts={posts} />
+      <p className="mt-8 text-right text-sm">
+        <a href="/rss.xml" className="text-accent-text">
+          RSS feed
+        </a>
+      </p>
     </Container>
   );
 }

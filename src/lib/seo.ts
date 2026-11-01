@@ -31,7 +31,10 @@ export function pageMetadata({
   return {
     title: title ?? { absolute: site.seo.title },
     description,
-    alternates: { canonical: path },
+    alternates: {
+      canonical: path,
+      types: { "application/rss+xml": "/rss.xml" },
+    },
     openGraph: {
       type,
       url: path,
