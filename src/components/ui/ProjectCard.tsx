@@ -16,7 +16,7 @@ export function ProjectCard({
   project,
   index = 0,
 }: {
-  project: Project;
+  project: Pick<Project, "slug" | "frontmatter">;
   index?: number;
 }) {
   const { slug, frontmatter: fm } = project;
