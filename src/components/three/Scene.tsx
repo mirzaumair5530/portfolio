@@ -8,6 +8,9 @@ import { Rig } from "@/components/three/Rig";
 // One fixed canvas behind the page.
 export default function Scene({ onFail }: { onFail: () => void }) {
   const wrapper = useRef<HTMLDivElement>(null);
+  // R3F releases the WebGL context itself on unmount, which also fires a
+  // context-lost event; only a loss while mounted is a real failure.
+  const mounted = useRef(true);
   const [tabVisible, setTabVisible] = useState(true);
   const [onScreen, setOnScreen] = useState(true);
 
@@ -30,7 +33,9 @@ export default function Scene({ onFail }: { onFail: () => void }) {
   // While the scene is live, the static crystal in the hero fades out.
   useEffect(() => {
     document.documentElement.dataset.scene = "on";
+    mounted.current = true;
     return () => {
+      mounted.current = false;
       delete document.documentElement.dataset.scene;
     };
   }, []);
@@ -48,7 +53,9 @@ export default function Scene({ onFail }: { onFail: () => void }) {
         frameloop={tabVisible && onScreen ? "always" : "never"}
         gl={{ alpha: true, powerPreference: "low-power" }}
         onCreated={({ gl }) =>
-          gl.domElement.addEventListener("webglcontextlost", onFail)
+          gl.domElement.addEventListener("webglcontextlost", () => {
+            if (mounted.current) onFail();
+          })
         }
       >
         <Rig>

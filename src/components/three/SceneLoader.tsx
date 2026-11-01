@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { SceneBoundary } from "@/components/three/SceneBoundary";
 import { canRunScene, prefersReducedMotion } from "@/lib/capabilities";
@@ -11,7 +12,13 @@ const Scene = dynamic(() => import("@/components/three/Scene"), {
   ssr: false,
 });
 
+// Text-heavy pages get no scene, so reading and printing stay clean.
+function sceneAllowed(pathname: string) {
+  return pathname !== "/resume" && !pathname.startsWith("/blog/");
+}
+
 export function SceneLoader() {
+  const pathname = usePathname();
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
 
@@ -40,7 +47,7 @@ export function SceneLoader() {
     };
   }, []);
 
-  if (!ready || failed) return null;
+  if (!ready || failed || !sceneAllowed(pathname)) return null;
   return (
     <SceneBoundary onError={() => setFailed(true)}>
       <Scene onFail={() => setFailed(true)} />
