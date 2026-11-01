@@ -5,7 +5,7 @@ export function PostRow({
   post,
   showDescription = false,
 }: {
-  post: Post;
+  post: Pick<Post, "slug" | "frontmatter" | "readingTime">;
   showDescription?: boolean;
 }) {
   const { slug, frontmatter: fm, readingTime } = post;
