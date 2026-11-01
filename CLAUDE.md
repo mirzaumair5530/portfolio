@@ -8,14 +8,15 @@ Rules for AI coding tools working on Umair Farooq's portfolio.
 
 - `pnpm dev` / `pnpm build` / `pnpm start`: Next.js dev server, production build, serve the build.
 - `pnpm lint`: `eslint .` (flat config in `eslint.config.mjs`). `pnpm format`: `prettier --write .`.
-- There is no test runner yet; `pnpm lint` and `pnpm build` (which type-checks) are the verification steps.
+- There is no test runner; `pnpm lint` and `pnpm build` (which type-checks) are the verification steps. Behaviour checks (overflow, CLS, contact form, Lighthouse) were done with headless Chrome and `npx lighthouse@12` against `pnpm build && pnpm start`, outside the repo.
 
 ## Project status
 
 - M1 to M6 (Foundation, Content, Pages, Scroll, 3D, Contact and SEO) are done; M0.7 (Vercel import) is still open. Next is M7 (Real content). All routes exist; scroll animation and the 3D scene are in. The hero shows a static `CrystalImage` SVG (the fallback for the 3D scene).
 - `SPEC.md` is the source of truth for milestones and tasks; work is tracked there by ticking tasks.
-- `specs/` (untracked) holds the Blue Glass design reference (HTML and PDF). `public/` still contains only the default create-next-app SVGs.
-- `src/data/site.ts` and `src/data/resume.ts` hold placeholder values (email, links, roles) until M7.
+- `specs/` holds the Blue Glass design reference (HTML and PDF). `public/` holds the placeholder résumé PDF.
+- `src/data/site.ts` and `src/data/resume.ts` hold placeholder values (email, links, roles, `sameAs` URLs) until M7, and `src/content/` holds sample projects and posts. M7 is blocked on the owner's real material.
+- Known gaps: mobile LCP is about 3.1 s (target 2.5 s); the in-memory rate limit does not hold across serverless instances; the contact route has only been tested against a Resend stub.
 
 ## Architecture
 
@@ -31,7 +32,7 @@ Rules for AI coding tools working on Umair Farooq's portfolio.
 ## Next.js gotchas (Cache Components is on)
 
 - `cacheComponents: true`: `Date.now()` / `new Date()` in server or client render fails prerender, so avoid them (the footer has no year for this reason). `MdxContent` uses `"use cache"` because MDX compilation reads the clock.
-- Route segment config such as `dynamicParams` is not allowed. As a result an unknown `[slug]` shows not-found content but returns HTTP 200 (open issue, relevant for M6 SEO).
+- Route segment config such as `dynamicParams` is not allowed. As a result an unknown `[slug]` shows not-found content but returns HTTP 200 (open issue).
 - `params` is a Promise; use the global `PageProps<"/route">` / `LayoutProps<"/">` types.
 
 ## Rules
@@ -50,7 +51,7 @@ Rules for AI coding tools working on Umair Farooq's portfolio.
 - ESLint and Prettier (`pnpm lint`, `pnpm format`).
 - Deployed on Vercel from GitHub.
 - Installed for content (M2): Zod, gray-matter, next-mdx-remote, rehype-pretty-code, Shiki, rehype-slug, github-slugger.
-- Added in later milestones, not yet installed: three, @react-three/fiber, @react-three/drei, GSAP with ScrollTrigger, Lenis, Motion, Resend and Zustand.
+- Installed for motion, 3D and contact (M4 to M6): GSAP with ScrollTrigger and `@gsap/react`, Lenis, three with `@react-three/fiber`, Zustand and Resend.
 
 ## Folder structure
 
