@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ProjectsScroll } from "@/components/sections/ProjectsScroll";
 import { Container } from "@/components/ui/Container";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -17,7 +18,7 @@ export function FeaturedProjects() {
           All projects →
         </Link>
       </div>
-      <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <ProjectsScroll>
         {projects.map((project, index) => (
           <li key={project.slug} className="flex">
             <div className="flex w-full">
@@ -25,7 +26,7 @@ export function FeaturedProjects() {
             </div>
           </li>
         ))}
-      </ul>
+      </ProjectsScroll>
     </Container>
   );
 }
