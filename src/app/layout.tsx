@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { BackdropShapes } from "@/components/ui/BackdropShapes";
+import { Navbar } from "@/components/ui/Navbar";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { ThemeScript } from "@/components/ui/ThemeScript";
 import "@/styles/globals.css";
@@ -44,7 +46,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       </head>
       <body className="flex min-h-full flex-col">
         <ThemeProvider>
-          {children}
+          <a
+            href="#main"
+            className="bg-accent text-accent-contrast fixed top-2 left-2 z-[70] -translate-y-20 rounded-full px-4 py-2 text-sm font-semibold focus:translate-y-0"
+          >
+            Skip to content
+          </a>
+          <BackdropShapes />
+          <Navbar />
+          <main id="main" className="flex-1 pt-32">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>
