@@ -12,24 +12,15 @@ export function useThemeColors() {
       accent: new THREE.Color(),
       accent2: new THREE.Color(),
       edge: new THREE.Color(),
+      /** Bumped whenever the colours are re-read, so consumers can refresh. */
+      version: 0,
     }),
     [],
   );
 
   useEffect(() => {
     const root = document.documentElement;
-
-    function read() {
-      const style = getComputedStyle(root);
-      const token = (name: string) => style.getPropertyValue(name).trim();
-      colors.accent.set(token("--accent"));
-      colors.accent2.set(token("--accent-2"));
-      // Ink-coloured edges: deep navy on dark, the text ink on light.
-      colors.edge.set(
-        root.dataset.theme === "light" ? token("--text") : token("--bg"),
-      );
-    }
-
+    const read = () => readTokens(colors);
     read();
     const observer = new MutationObserver(read);
     observer.observe(root, {
@@ -40,4 +31,20 @@ export function useThemeColors() {
   }, [colors]);
 
   return colors;
+}
+
+type ThemeColors = ReturnType<typeof useThemeColors>;
+
+function readTokens(colors: ThemeColors) {
+  const root = document.documentElement;
+  const style = getComputedStyle(root);
+  const token = (name: string) => style.getPropertyValue(name).trim();
+
+  colors.accent.set(token("--accent"));
+  colors.accent2.set(token("--accent-2"));
+  // Ink-coloured edges: deep navy on dark, the text ink on light.
+  colors.edge.set(
+    root.dataset.theme === "light" ? token("--text") : token("--bg"),
+  );
+  colors.version += 1;
 }

@@ -28,7 +28,15 @@ const poses: Record<string, Pose> = {
   other: { x: 0.3, y: 0, scale: 0.8, dim: 0.35 },
 };
 
-const SMOOTHING = 3;
+// Lower is slower and softer. Poses take about two seconds to settle.
+const SMOOTHING = 1.4;
+// Radians of spin over the whole page, and per second at rest.
+const SCROLL_SPIN = Math.PI * 1.5;
+const IDLE_SPIN = 0.07;
+// Forward lean that shows both the top and bottom faces, as in the design.
+const BASE_TILT = 0.2;
+// Starting turn: 45 degrees shows two top and two bottom faces, as in the design.
+const START_YAW = Math.PI / 4;
 
 // Mouse parallax only makes sense with a real pointer and room to move.
 const PARALLAX_QUERY =
@@ -130,24 +138,38 @@ export function Rig({ children }: { children: React.ReactNode }) {
     const s = THREE.MathUtils.damp(target.scale.x, scale, SMOOTHING, delta);
     target.scale.setScalar(s);
 
-    // Scroll spins the crystal; a small idle drift keeps it alive.
-    target.rotation.y =
-      progress * Math.PI * 6 +
-      state.clock.elapsedTime * 0.2 +
-      mouse.smoothX * 0.5;
-    target.rotation.x =
-      Math.sin(progress * Math.PI * 4) * 0.25 + mouse.smoothY * 0.3;
+    // Scroll turns the crystal slowly; a faint idle spin keeps it alive. The
+    // angles are damped, so a quick scroll never makes it whip around.
+    const spinY =
+      START_YAW +
+      progress * SCROLL_SPIN +
+      state.clock.elapsedTime * IDLE_SPIN +
+      mouse.smoothX * 0.4;
+    const tiltX =
+      BASE_TILT + Math.sin(progress * Math.PI * 2) * 0.12 + mouse.smoothY * 0.2;
+    target.rotation.y = THREE.MathUtils.damp(
+      target.rotation.y,
+      spinY,
+      SMOOTHING,
+      delta,
+    );
+    target.rotation.x = THREE.MathUtils.damp(
+      target.rotation.x,
+      tiltX,
+      SMOOTHING,
+      delta,
+    );
 
     // The camera drifts along a gentle path as the page scrolls.
     camera.position.x = THREE.MathUtils.damp(
       camera.position.x,
-      Math.sin(progress * Math.PI * 2) * 0.6,
+      Math.sin(progress * Math.PI * 2) * 0.4,
       SMOOTHING,
       delta,
     );
     camera.position.y = THREE.MathUtils.damp(
       camera.position.y,
-      0.4 - progress * 0.8,
+      0.3 - progress * 0.5,
       SMOOTHING,
       delta,
     );

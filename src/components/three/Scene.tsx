@@ -47,6 +47,8 @@ export default function Scene({ onFail }: { onFail: () => void }) {
       className="pointer-events-none fixed inset-0 -z-[9] print:hidden"
     >
       <Canvas
+        // Flat: no tone mapping, so the face colours match the design palette.
+        flat
         camera={{ position: [0, 0, 6], fov: 40 }}
         // Cap the pixel ratio: retina phones would otherwise draw 9x pixels.
         dpr={[1, 1.5]}
