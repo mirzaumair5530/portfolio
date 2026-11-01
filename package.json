@@ -28,6 +28,7 @@
     "react-dom": "19.3.0",
     "rehype-pretty-code": "^0.14.5",
     "rehype-slug": "^6.0.0",
+    "resend": "^6.37.0",
     "shiki": "^4.5.0",
     "three": "^0.187.0",
     "zod": "^4.6.7",
