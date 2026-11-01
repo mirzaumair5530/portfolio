@@ -1,7 +1,7 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { rigState } from "@/components/three/rigState";
 import { useThemeColors } from "@/components/three/useThemeColors";
@@ -34,6 +34,15 @@ export function Crystal() {
     geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
     return geometry;
   }, []);
+
+  // R3F frees the geometries declared in JSX; these two are built by hand.
+  useEffect(
+    () => () => {
+      edges.dispose();
+      specks.dispose();
+    },
+    [edges, specks],
+  );
 
   // Fade everything with the rig's dim value so text stays readable.
   useFrame(() => {
