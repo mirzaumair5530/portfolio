@@ -74,6 +74,33 @@ body {
     var(--glass-sheen), color-mix(in srgb, var(--accent) 18%, var(--glass-fill));
 }
 
+/*
+ * Opt-in hover for glass that is a link or button: the edge light brightens,
+ * the shadow deepens and the panel lifts. Only box-shadow and transform
+ * change, so the backdrop blur is never re-animated.
+ */
+@utility glass-interactive {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    transition:
+      box-shadow 0.3s ease,
+      translate 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+    &:hover,
+    &:focus-within {
+      translate: 0 -4px;
+      box-shadow: var(--glass-edge-hover), var(--glass-shadow-hover);
+    }
+  }
+
+  /* Reduced motion: brighten the edge but do not move. */
+  @media (hover: hover) and (prefers-reduced-motion: reduce) {
+    &:hover,
+    &:focus-within {
+      box-shadow: var(--glass-edge-hover), var(--glass-shadow-hover);
+    }
+  }
+}
+
 /* The 3D scene replaces the static crystal while it runs. */
 html[data-scene="on"] [data-crystal-fallback] {
   opacity: 0;

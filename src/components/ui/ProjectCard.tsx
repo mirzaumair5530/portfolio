@@ -24,7 +24,7 @@ export function ProjectCard({
   return (
     <article
       className={cn(
-        "glass rounded-card group relative flex flex-col overflow-hidden transition-transform duration-300 hover:-translate-y-1",
+        "glass glass-interactive rounded-card group relative flex flex-col overflow-hidden",
         fm.featured && "glass-accent",
       )}
     >

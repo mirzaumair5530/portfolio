@@ -31,6 +31,11 @@
     inset -1px -1px 0 rgb(255 255 255 / 0.12),
     inset 0 0 20px rgb(255 255 255 / 0.06);
   --glass-shadow: 0 16px 40px rgb(0 0 0 / 0.35);
+  --glass-edge-hover:
+    inset 1.5px 1.5px 0 rgb(255 255 255 / 0.65),
+    inset -1px -1px 0 rgb(255 255 255 / 0.2),
+    inset 0 0 40px rgb(255 255 255 / 0.1);
+  --glass-shadow-hover: 0 22px 50px rgb(0 0 0 / 0.45);
 
   --shape-1: rgb(61 139 255 / 0.7);
   --shape-2: rgb(20 48 95 / 0.7);
@@ -62,6 +67,11 @@
     inset 1.5px 1.5px 0 rgb(255 255 255 / 0.8),
     inset -1px -1px 0 rgb(11 22 48 / 0.08);
   --glass-shadow: 0 16px 40px rgb(20 50 110 / 0.15);
+  --glass-edge-hover:
+    inset 1.5px 1.5px 0 rgb(255 255 255 / 1),
+    inset -1px -1px 0 rgb(11 22 48 / 0.12),
+    inset 0 0 40px rgb(255 255 255 / 0.5);
+  --glass-shadow-hover: 0 22px 50px rgb(20 50 110 / 0.25);
 
   --shape-1: rgb(106 167 255 / 0.4);
   --shape-2: rgb(143 211 244 / 0.4);
