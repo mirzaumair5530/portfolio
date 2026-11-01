@@ -1,25 +1,39 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { MdxContent } from "@/components/mdx/MdxContent";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { getProject, getProjects } from "@/lib/mdx";
 
-export const metadata: Metadata = { title: "Project" };
-
-// Placeholder slug so the route prerenders; real slugs come from MDX in M2.
 export function generateStaticParams() {
-  return [{ slug: "sample" }];
+  return getProjects().map(({ slug }) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: PageProps<"/projects/[slug]">): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProject(slug);
+  return { title: project?.frontmatter.title };
 }
 
 export default async function ProjectPage({
   params,
 }: PageProps<"/projects/[slug]">) {
   const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) notFound();
 
   return (
     <Container>
-      <SectionHeading as="h1" kicker="Project" title={slug} />
-      <p className="text-muted mt-6 max-w-xl">
-        Placeholder. The detail layout is built in M3.6.
-      </p>
+      <SectionHeading
+        as="h1"
+        kicker="Project"
+        title={project.frontmatter.title}
+      />
+      <article className="mt-8 max-w-3xl">
+        <MdxContent source={project.content} />
+      </article>
     </Container>
   );
 }

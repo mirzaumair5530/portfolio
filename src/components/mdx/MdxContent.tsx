@@ -43,7 +43,10 @@ const components = {
   ),
 };
 
-export function MdxContent({ source }: { source: string }) {
+// Compiling MDX reads the clock internally, which Cache Components rejects
+// during prerender. Caching by source keeps it at build time.
+export async function MdxContent({ source }: { source: string }) {
+  "use cache";
   return (
     <MDXRemote
       source={source}
