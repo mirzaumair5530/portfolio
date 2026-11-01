@@ -67,6 +67,34 @@ body {
   }
 }
 
+/*
+ * Full-screen glass for the mobile menu. It is the one place that blurs a large
+ * area, so it keeps the phone blur radius, is dense enough for text-4xl links
+ * to hold contrast, and only fades in (the blur itself is never animated).
+ */
+@utility glass-scrim {
+  background: color-mix(in srgb, var(--bg) 72%, transparent);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  backdrop-filter: blur(var(--glass-blur)) saturate(180%);
+  transition: opacity 0.25s ease;
+
+  @starting-style {
+    opacity: 0;
+  }
+
+  @supports not (
+    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+  ) {
+    background: var(--bg);
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    background: var(--bg);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 /* Featured cards: the same glass with an accent tint. */
 @utility glass-accent {
   border-color: color-mix(in srgb, var(--accent) 60%, transparent);
