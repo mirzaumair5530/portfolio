@@ -8,6 +8,8 @@ import { Skills } from "@/components/sections/Skills";
 import { ProgressRail } from "@/components/ui/ProgressRail";
 import { ScrollSpy } from "@/components/ui/ScrollSpy";
 
+import { JsonLd } from "@/components/ui/JsonLd";
+import { resume } from "@/data/resume";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -19,6 +21,17 @@ export const metadata = pageMetadata({
 export default function Home() {
   return (
     <>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Person",
+          name: site.name,
+          jobTitle: resume.headline,
+          description: site.tagline,
+          url: site.url,
+          sameAs: resume.links.map((link) => link.url),
+        }}
+      />
       <Hero />
       <About />
       <Experience />

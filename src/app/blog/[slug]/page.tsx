@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MdxContent } from "@/components/mdx/MdxContent";
 import { Container } from "@/components/ui/Container";
+import { JsonLd } from "@/components/ui/JsonLd";
 import { CopyLinkButton } from "@/components/ui/CopyLinkButton";
 import { Cover } from "@/components/ui/Cover";
 import { PrevNext } from "@/components/ui/PrevNext";
@@ -50,8 +51,25 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   const url = encodeURIComponent(`${site.url}/blog/${slug}`);
   const text = encodeURIComponent(fm.title);
 
+  const postUrl = `${site.url}/blog/${slug}`;
+
   return (
     <Container>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BlogPosting",
+          headline: fm.title,
+          description: fm.description,
+          datePublished: fm.date,
+          dateModified: fm.date,
+          url: postUrl,
+          mainEntityOfPage: postUrl,
+          image: `${postUrl}/opengraph-image`,
+          keywords: fm.tags.join(", "),
+          author: { "@type": "Person", name: site.name, url: site.url },
+        }}
+      />
       <Link href="/blog" className="text-muted text-sm">
         ← All posts
       </Link>
