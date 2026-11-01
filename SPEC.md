@@ -555,7 +555,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **M6.1** Build the `/api/contact` route handler with Zod validation.
 - [x] **M6.2** Add spam control: a hidden honeypot field and a per-IP rate limit.
 - [x] **M6.3** Send the email through Resend, using `RESEND_API_KEY` and `CONTACT_TO_EMAIL`.
-- [ ] **M6.4** Build the form UI with loading, success and error states and accessible labels.
+- [x] **M6.4** Build the form UI with loading, success and error states and accessible labels.
 - [ ] **M6.5** Add metadata for every route: title, description, canonical URL and Open Graph.
 - [ ] **M6.6** Generate share images for posts and projects.
 - [ ] **M6.7** Add `sitemap.xml`, `robots.txt` and the RSS feed at `/rss.xml`.

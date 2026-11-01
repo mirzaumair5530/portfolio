@@ -24,7 +24,7 @@ const poses: Record<string, Pose> = {
   skills: { x: 0, y: 0.3, scale: 0.55, dim: 0.35 },
   projects: { x: -0.3, y: 0, scale: 0.7, dim: 0.6, mix: 1 },
   blog: { x: 0.3, y: 0, scale: 0.55, dim: 0.35 },
-  contact: { x: 0, y: -0.1, scale: 0.9, dim: 0.7 },
+  contact: { x: 0, y: -0.1, scale: 0.6, dim: 0.45 },
   other: { x: 0.3, y: 0, scale: 0.8, dim: 0.35 },
 };
 

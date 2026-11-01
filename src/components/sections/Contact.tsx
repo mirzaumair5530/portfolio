@@ -1,14 +1,10 @@
-import { Button } from "@/components/ui/Button";
+import { ContactForm } from "@/components/sections/ContactForm";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { site } from "@/data/site";
 
-const fieldClass =
-  "border-border bg-background/40 text-foreground placeholder:text-muted w-full rounded-xl border px-4 py-3 text-sm";
-
-// Layout only: the form is wired to /api/contact in M6.
 export function Contact() {
   return (
     <Container
@@ -37,49 +33,7 @@ export function Contact() {
 
       <Reveal>
         <Card>
-          <form className="flex flex-col gap-5" aria-label="Contact form">
-            <div className="flex flex-col gap-2">
-              <label htmlFor="contact-name" className="text-muted text-xs">
-                Name
-              </label>
-              <input
-                id="contact-name"
-                name="name"
-                type="text"
-                autoComplete="name"
-                className={fieldClass}
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="contact-email" className="text-muted text-xs">
-                Email
-              </label>
-              <input
-                id="contact-email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                className={fieldClass}
-              />
-            </div>
-            <div className="flex flex-col gap-2">
-              <label htmlFor="contact-message" className="text-muted text-xs">
-                Message
-              </label>
-              <textarea
-                id="contact-message"
-                name="message"
-                rows={5}
-                className={fieldClass}
-              />
-            </div>
-            <Button type="submit" disabled className="w-full">
-              Send message
-            </Button>
-            <p className="text-muted text-center text-xs">
-              Sending is switched on in a later milestone.
-            </p>
-          </form>
+          <ContactForm />
         </Card>
       </Reveal>
     </Container>
