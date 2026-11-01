@@ -3,11 +3,15 @@
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
+import { rigState } from "@/components/three/rigState";
 
 // Low-poly crystal built in code: a stretched octahedron with flat-shaded
 // faces, dark edges, a thin orbit ring and a few drifting specks.
 export function Crystal() {
-  const group = useRef<THREE.Group>(null);
+  const body = useRef<THREE.MeshStandardMaterial>(null);
+  const edgeMaterial = useRef<THREE.LineBasicMaterial>(null);
+  const ring = useRef<THREE.MeshBasicMaterial>(null);
+  const speckMaterial = useRef<THREE.PointsMaterial>(null);
 
   const edges = useMemo(
     () => new THREE.EdgesGeometry(new THREE.OctahedronGeometry(1, 0)),
@@ -28,8 +32,13 @@ export function Crystal() {
     return geometry;
   }, []);
 
-  useFrame((_, delta) => {
-    if (group.current) group.current.rotation.y += delta * 0.25;
+  // Fade everything with the rig's dim value so text stays readable.
+  useFrame(() => {
+    const { dim } = rigState;
+    if (body.current) body.current.opacity = dim;
+    if (edgeMaterial.current) edgeMaterial.current.opacity = 0.6 * dim;
+    if (ring.current) ring.current.opacity = 0.6 * dim;
+    if (speckMaterial.current) speckMaterial.current.opacity = dim;
   });
 
   return (
@@ -38,11 +47,13 @@ export function Crystal() {
       <directionalLight position={[3, 4, 5]} intensity={2.2} />
       <pointLight position={[-3, -2, 2]} intensity={12} color="#8fd3f4" />
 
-      <group ref={group}>
-        <group scale={[1, 1.5, 1]}>
+      <group>
+        <group scale={[0.7, 1.05, 0.7]}>
           <mesh>
             <octahedronGeometry args={[1, 0]} />
             <meshStandardMaterial
+              ref={body}
+              transparent
               color="#3d8bff"
               flatShading
               roughness={0.35}
@@ -50,18 +61,24 @@ export function Crystal() {
             />
           </mesh>
           <lineSegments geometry={edges}>
-            <lineBasicMaterial color="#0b1d44" transparent opacity={0.6} />
+            <lineBasicMaterial ref={edgeMaterial} color="#0b1d44" transparent />
           </lineSegments>
         </group>
       </group>
 
       <mesh rotation={[Math.PI / 2.4, 0.2, 0]}>
-        <torusGeometry args={[1.7, 0.01, 8, 96]} />
-        <meshBasicMaterial color="#8fd3f4" transparent opacity={0.6} />
+        <torusGeometry args={[1.3, 0.008, 8, 96]} />
+        <meshBasicMaterial ref={ring} color="#8fd3f4" transparent />
       </mesh>
 
       <points geometry={specks}>
-        <pointsMaterial color="#8fd3f4" size={0.06} sizeAttenuation />
+        <pointsMaterial
+          ref={speckMaterial}
+          color="#8fd3f4"
+          size={0.06}
+          sizeAttenuation
+          transparent
+        />
       </points>
     </>
   );
