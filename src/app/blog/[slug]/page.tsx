@@ -9,6 +9,7 @@ import { PrevNext } from "@/components/ui/PrevNext";
 import { TableOfContents } from "@/components/ui/TableOfContents";
 import { Tag } from "@/components/ui/Tag";
 import { site } from "@/data/site";
+import { pageMetadata } from "@/lib/seo";
 import { getPost, getPosts } from "@/lib/mdx";
 import { getToc } from "@/lib/reading";
 
@@ -24,10 +25,15 @@ export async function generateMetadata({
 }: PageProps<"/blog/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const post = getPost(slug);
-  return {
-    title: post?.frontmatter.title,
-    description: post?.frontmatter.description,
-  };
+  if (!post) return {};
+  return pageMetadata({
+    title: post.frontmatter.title,
+    description: post.frontmatter.description,
+    path: `/blog/${slug}`,
+    type: "article",
+    publishedTime: post.frontmatter.date,
+    tags: post.frontmatter.tags,
+  });
 }
 
 export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {

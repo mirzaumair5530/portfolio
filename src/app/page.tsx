@@ -8,6 +8,14 @@ import { Skills } from "@/components/sections/Skills";
 import { ProgressRail } from "@/components/ui/ProgressRail";
 import { ScrollSpy } from "@/components/ui/ScrollSpy";
 
+import { site } from "@/data/site";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  description: site.seo.description,
+  path: "/",
+});
+
 export default function Home() {
   return (
     <>

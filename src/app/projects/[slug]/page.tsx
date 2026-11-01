@@ -8,6 +8,7 @@ import { Cover } from "@/components/ui/Cover";
 import { PrevNext } from "@/components/ui/PrevNext";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Tag } from "@/components/ui/Tag";
+import { pageMetadata } from "@/lib/seo";
 import { getProject, getProjects } from "@/lib/mdx";
 
 export function generateStaticParams() {
@@ -19,10 +20,12 @@ export async function generateMetadata({
 }: PageProps<"/projects/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
-  return {
-    title: project?.frontmatter.title,
-    description: project?.frontmatter.summary,
-  };
+  if (!project) return {};
+  return pageMetadata({
+    title: project.frontmatter.title,
+    description: project.frontmatter.summary,
+    path: `/projects/${slug}`,
+  });
 }
 
 export default async function ProjectPage({

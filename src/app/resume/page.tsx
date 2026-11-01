@@ -4,9 +4,14 @@ import { Container } from "@/components/ui/Container";
 import { Tag } from "@/components/ui/Tag";
 import { resume } from "@/data/resume";
 import { site } from "@/data/site";
+import { pageMetadata } from "@/lib/seo";
 import { formatPeriod } from "@/lib/format";
 
-export const metadata: Metadata = { title: "Resume" };
+export const metadata: Metadata = pageMetadata({
+  title: "Resume",
+  description: resume.summary,
+  path: "/resume",
+});
 
 function Section({
   title,

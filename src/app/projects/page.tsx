@@ -2,9 +2,15 @@ import type { Metadata } from "next";
 import { ProjectsGrid } from "@/components/sections/ProjectsGrid";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { pageMetadata } from "@/lib/seo";
 import { getProjects } from "@/lib/mdx";
 
-export const metadata: Metadata = { title: "Projects" };
+export const metadata: Metadata = pageMetadata({
+  title: "Projects",
+  description:
+    "Full-stack products and experiments by Umair Farooq: the problem, the role, the stack and the result.",
+  path: "/projects",
+});
 
 export default function ProjectsPage() {
   // Only what the grid needs crosses to the client; the MDX body stays here.

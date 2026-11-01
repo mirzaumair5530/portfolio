@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { BackdropShapes } from "@/components/ui/BackdropShapes";
+import { site } from "@/data/site";
 import { SceneLoader } from "@/components/three/SceneLoader";
 import { Footer } from "@/components/ui/Footer";
 import { Navbar } from "@/components/ui/Navbar";
@@ -30,11 +31,14 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  // Relative URLs in per-page metadata (canonical, share images) resolve here.
+  metadataBase: new URL(site.url),
   title: {
-    default: "Umair Farooq · Software Engineer",
-    template: "%s · Umair Farooq",
+    default: site.seo.title,
+    template: `%s · ${site.name}`,
   },
-  description: "Portfolio of Umair Farooq, a software engineer.",
+  description: site.seo.description,
+  openGraph: { siteName: site.name, locale: "en_US" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
