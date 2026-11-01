@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import { BackdropShapes } from "@/components/ui/BackdropShapes";
 import { Footer } from "@/components/ui/Footer";
 import { Navbar } from "@/components/ui/Navbar";
+import { ScrollSync } from "@/components/ui/ScrollSync";
 import { SmoothScroll } from "@/components/ui/SmoothScroll";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { ThemeScript } from "@/components/ui/ThemeScript";
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             Skip to content
           </a>
           <SmoothScroll />
+          <ScrollSync />
           <BackdropShapes />
           <Navbar />
           <main id="main" className="flex-1 pt-32 print:pt-0">
