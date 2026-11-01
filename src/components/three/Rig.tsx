@@ -1,7 +1,7 @@
 "use client";
 
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { rigState } from "@/components/three/rigState";
 import { useScrollStore } from "@/store/scrollStore";
@@ -30,10 +30,43 @@ const poses: Record<string, Pose> = {
 
 const SMOOTHING = 3;
 
+// Mouse parallax only makes sense with a real pointer and room to move.
+const PARALLAX_QUERY =
+  "(hover: hover) and (pointer: fine) and (min-width: 1024px)";
+
 // Moves the camera and the crystal from the scroll store: the section sets the
 // target pose, progress drives the camera drift and the spin.
 export function Rig({ children }: { children: React.ReactNode }) {
   const group = useRef<THREE.Group>(null);
+  // Pointer position in -1..1 (target) and its smoothed value (current).
+  const pointer = useRef({
+    x: 0,
+    y: 0,
+    smoothX: 0,
+    smoothY: 0,
+    enabled: false,
+  });
+
+  useEffect(() => {
+    const query = window.matchMedia(PARALLAX_QUERY);
+    const state = pointer.current;
+    state.enabled = query.matches;
+
+    function onChange() {
+      state.enabled = query.matches;
+    }
+    function onMove(event: PointerEvent) {
+      state.x = (event.clientX / window.innerWidth - 0.5) * 2;
+      state.y = (event.clientY / window.innerHeight - 0.5) * 2;
+    }
+
+    query.addEventListener("change", onChange);
+    window.addEventListener("pointermove", onMove);
+    return () => {
+      query.removeEventListener("change", onChange);
+      window.removeEventListener("pointermove", onMove);
+    };
+  }, []);
 
   useFrame((state, delta) => {
     const { camera } = state;
@@ -45,9 +78,25 @@ export function Rig({ children }: { children: React.ReactNode }) {
     const { width, height } = state.viewport;
     const narrow = width < height;
 
+    // Parallax applies in the hero only and eases back out elsewhere.
+    const mouse = pointer.current;
+    const weight = mouse.enabled && activeSection === "hero" ? 1 : 0;
+    mouse.smoothX = THREE.MathUtils.damp(
+      mouse.smoothX,
+      mouse.x * weight,
+      SMOOTHING,
+      delta,
+    );
+    mouse.smoothY = THREE.MathUtils.damp(
+      mouse.smoothY,
+      mouse.y * weight,
+      SMOOTHING,
+      delta,
+    );
+
     // On phones the crystal sits centred and high, behind the text.
-    const x = narrow ? 0 : pose.x * width;
-    const y = narrow ? height * 0.28 : pose.y * height;
+    const x = (narrow ? 0 : pose.x * width) + mouse.smoothX * 0.35;
+    const y = (narrow ? height * 0.28 : pose.y * height) - mouse.smoothY * 0.2;
     const scale = narrow ? pose.scale * 0.7 : pose.scale;
     const dim = narrow ? Math.min(pose.dim, 0.5) : pose.dim;
 
@@ -67,8 +116,12 @@ export function Rig({ children }: { children: React.ReactNode }) {
     target.scale.setScalar(s);
 
     // Scroll spins the crystal; a small idle drift keeps it alive.
-    target.rotation.y = progress * Math.PI * 6 + state.clock.elapsedTime * 0.2;
-    target.rotation.x = Math.sin(progress * Math.PI * 4) * 0.25;
+    target.rotation.y =
+      progress * Math.PI * 6 +
+      state.clock.elapsedTime * 0.2 +
+      mouse.smoothX * 0.5;
+    target.rotation.x =
+      Math.sin(progress * Math.PI * 4) * 0.25 + mouse.smoothY * 0.3;
 
     // The camera drifts along a gentle path as the page scrolls.
     camera.position.x = THREE.MathUtils.damp(
