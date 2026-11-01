@@ -1,3 +1,4 @@
+import { Timeline } from "@/components/sections/Timeline";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -13,7 +14,7 @@ export function Experience() {
         title="Where I’ve worked."
         reveal
       />
-      <ol className="border-accent/40 mt-12 ml-2 space-y-6 border-l-2 pl-6 md:pl-10">
+      <Timeline>
         {resume.experience.map((job, index) => (
           <li key={`${job.company}-${job.start}`} className="relative">
             <span
@@ -40,7 +41,7 @@ export function Experience() {
             </Card>
           </li>
         ))}
-      </ol>
+      </Timeline>
     </Container>
   );
 }
