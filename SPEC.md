@@ -507,7 +507,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 - [x] **M3.1** Home: hero and about. The hero shows a static crystal image as a stand-in for the 3D scene.
 - [x] **M3.2** Home: experience timeline (reads `resume.ts`) and skills.
-- [ ] **M3.3** Home: featured projects (from the `featured` flag) and latest posts.
+- [x] **M3.3** Home: featured projects (from the `featured` flag) and latest posts.
 - [ ] **M3.4** Home: contact section, layout only. The form is wired in M6.
 - [ ] **M3.5** `/projects`: card grid with a technology filter.
 - [ ] **M3.6** `/projects/[slug]`: detail layout with sidebar, sections and previous and next links.
