@@ -482,7 +482,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **M1.3** Build the theme provider: `data-theme` on the root, first visit follows the system, choice saved, no flash on load.
 - [x] **M1.4** Build the floating glass navbar: desktop links, active-page underline, theme toggle, Resume button, and a full-screen mobile menu.
 - [x] **M1.5** Build the footer.
-- [ ] **M1.6** Build shared components: Button (primary and outline), Tag, Card (glass), SectionHeading (kicker and title) and Container.
+- [x] **M1.6** Build shared components: Button (primary and outline), Tag, Card (glass), SectionHeading (kicker and title) and Container.
 - [ ] **M1.7** Add placeholder routes `/`, `/projects`, `/projects/[slug]`, `/blog`, `/blog/[slug]` and `/resume`, each inside the shell.
 
 **Done when:** every route renders in the shell, the theme toggle works without a flash, every control works by keyboard with a visible focus ring, and text contrast passes in both themes.
