@@ -7,7 +7,7 @@ export const contentType = ogContentType;
 export default function Image() {
   return renderOgImage({
     kicker: "Blog",
-    title: "Notes on building.",
+    title: "Notes on building",
     subtitle:
       "Short write-ups on React, Node.js, MongoDB and the things I learn while shipping.",
   });

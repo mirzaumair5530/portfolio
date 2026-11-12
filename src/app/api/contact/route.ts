@@ -1,41 +1,21 @@
 import { z } from "zod";
 import { contactSchema } from "@/lib/contact-schema";
 import { allowRequest } from "@/lib/rate-limit";
+import { clientIp, json, readJson } from "@/lib/request";
 import {
   isContactConfigured,
   sendContactEmail,
 } from "@/lib/send-contact-email";
 
-const MAX_BODY_BYTES = 20_000;
-
-function json(body: Record<string, unknown>, status: number) {
-  return Response.json(body, { status });
-}
-
-function clientIp(request: Request) {
-  // Vercel puts the real client first in x-forwarded-for.
-  const forwarded = request.headers.get("x-forwarded-for");
-  return forwarded?.split(",")[0].trim() || "unknown";
-}
-
 export async function POST(request: Request) {
-  if (!allowRequest(clientIp(request))) {
+  if (!allowRequest(`contact:${clientIp(request)}`)) {
     return json({ error: "Too many messages. Please try again later." }, 429);
   }
 
-  const raw = await request.text();
-  if (raw.length > MAX_BODY_BYTES) {
-    return json({ error: "Message too large." }, 413);
-  }
+  const body = await readJson(request, 20_000);
+  if ("error" in body) return body.error;
 
-  let data: unknown;
-  try {
-    data = JSON.parse(raw);
-  } catch {
-    return json({ error: "Invalid request." }, 400);
-  }
-
-  const parsed = contactSchema.safeParse(data);
+  const parsed = contactSchema.safeParse(body.data);
   if (!parsed.success) {
     return json(
       {

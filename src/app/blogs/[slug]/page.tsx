@@ -1,21 +1,19 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import { SubscribeBanner } from "@/components/blog/SubscribeBanner";
+import { BlogCard } from "@/components/cards/BlogCard";
 import { MdxContent } from "@/components/mdx/MdxContent";
+import { CategoryBadge } from "@/components/ui/CategoryBadge";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/ui/JsonLd";
-import { CopyLinkButton } from "@/components/ui/CopyLinkButton";
-import { Cover } from "@/components/ui/Cover";
-import { PrevNext } from "@/components/ui/PrevNext";
-import { TableOfContents } from "@/components/ui/TableOfContents";
-import { Tag } from "@/components/ui/Tag";
+import { LoadMoreGrid } from "@/components/ui/LoadMoreGrid";
+import { Media } from "@/components/ui/Media";
+import { Section } from "@/components/ui/Section";
+import { TitleRule } from "@/components/ui/TitleRule";
 import { site } from "@/data/site";
+import { formatDate } from "@/lib/format";
 import { pageMetadata } from "@/lib/seo";
 import { getPost, getPosts } from "@/lib/mdx";
-import { getToc } from "@/lib/reading";
-
-const shareClass =
-  "border-border text-foreground rounded-full border px-4 py-2 text-sm";
 
 export function generateStaticParams() {
   return getPosts().map(({ slug }) => ({ slug }));
@@ -39,101 +37,75 @@ export async function generateMetadata({
 
 export default async function PostPage({ params }: PageProps<"/blogs/[slug]">) {
   const { slug } = await params;
-  // Newest first, so the next index is the older post.
   const posts = getPosts();
-  const index = posts.findIndex((post) => post.slug === slug);
-  if (index === -1) notFound();
+  const post = posts.find((entry) => entry.slug === slug);
+  if (!post) notFound();
 
-  const { frontmatter: fm, content, readingTime } = posts[index];
-  const toLink = (post?: (typeof posts)[number]) =>
-    post && { href: `/blogs/${post.slug}`, title: post.frontmatter.title };
-
-  const url = encodeURIComponent(`${site.url}/blogs/${slug}`);
-  const text = encodeURIComponent(fm.title);
-
+  const { frontmatter: fm, content, readingTime } = post;
+  const others = posts.filter((entry) => entry.slug !== slug);
   const postUrl = `${site.url}/blogs/${slug}`;
 
   return (
-    <Container className="pt-32 pb-24 print:pt-0">
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "BlogPosting",
-          headline: fm.title,
-          description: fm.description,
-          datePublished: fm.date,
-          dateModified: fm.date,
-          url: postUrl,
-          mainEntityOfPage: postUrl,
-          image: `${postUrl}/opengraph-image`,
-          keywords: fm.tags.join(", "),
-          author: { "@type": "Person", name: site.name, url: site.url },
-        }}
-      />
-      <Link href="/blogs" className="text-muted text-sm">
-        ← All posts
-      </Link>
-      <p className="text-accent-2 mt-6 font-mono text-xs">
-        <time dateTime={fm.date}>{fm.date}</time> · {readingTime} min read
-      </p>
-      <h1 className="font-heading text-foreground mt-3 text-3xl font-bold tracking-tight md:text-5xl">
-        {fm.title}
-      </h1>
-      <p className="text-muted mt-6 max-w-2xl text-lg leading-8">
-        {fm.description}
-      </p>
-      {fm.tags.length > 0 && (
-        <ul className="mt-4 flex flex-wrap gap-2" aria-label="Tags">
-          {fm.tags.map((tag) => (
-            <li key={tag}>
-              <Tag>{tag}</Tag>
-            </li>
-          ))}
-        </ul>
-      )}
-      <Cover
-        src={fm.cover}
-        alt={fm.coverAlt}
-        label="Cover image"
-        className="mt-10"
-      />
+    <>
+      <Container className="page-top">
+        <JsonLd
+          data={{
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: fm.title,
+            description: fm.description,
+            datePublished: fm.date,
+            dateModified: fm.date,
+            url: postUrl,
+            mainEntityOfPage: postUrl,
+            image: `${postUrl}/opengraph-image`,
+            articleSection: fm.category,
+            keywords: fm.tags.join(", "),
+            author: { "@type": "Person", name: site.name, url: site.url },
+          }}
+        />
+        {/* The content column is narrower than the main container. */}
+        <div className="mx-auto max-w-[1000px]">
+          <h1 className="type-display text-balance">{fm.title}</h1>
+          <p className="type-body-l mt-5 max-w-[640px]">{fm.description}</p>
+          <div className="mt-5 flex flex-wrap items-center gap-4">
+            <CategoryBadge>{fm.category}</CategoryBadge>
+            <p className="type-small text-muted">
+              <time dateTime={fm.date}>{formatDate(fm.date)}</time> ·{" "}
+              {readingTime} min read
+            </p>
+          </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_16rem]">
-        <div className="min-w-0 lg:order-first">
-          <article className="max-w-3xl">
+          <div className="rounded-card relative mt-10 aspect-[16/9] overflow-hidden tablet:mt-16">
+            <Media
+              image={{ src: fm.cover, alt: fm.coverAlt }}
+              label="Post cover"
+              sizes="(min-width: 1080px) 1000px, 100vw"
+              priority
+            />
+          </div>
+
+          <article className="mt-10 tablet:mt-16">
             <MdxContent source={content} />
           </article>
-          <div className="border-border/50 mt-12 flex flex-wrap items-center gap-3 border-t pt-6">
-            <span className="text-muted text-sm">Share</span>
-            <a
-              className={shareClass}
-              href={`https://www.linkedin.com/sharing/share-offsite/?url=${url}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
-            <a
-              className={shareClass}
-              href={`https://x.com/intent/post?url=${url}&text=${text}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              X
-            </a>
-            <CopyLinkButton className={`${shareClass} cursor-pointer`} />
-          </div>
-        </div>
-        <aside className="lg:sticky lg:top-28 lg:self-start">
-          <TableOfContents items={getToc(content)} />
-        </aside>
-      </div>
 
-      <PrevNext
-        label="post"
-        prev={toLink(posts[index + 1])}
-        next={toLink(posts[index - 1])}
-      />
-    </Container>
+          <SubscribeBanner />
+        </div>
+      </Container>
+
+      {others.length > 0 && (
+        <Section>
+          <TitleRule title="More to discover" />
+          <LoadMoreGrid initial={2} className="mt-10">
+            {others.map(({ slug: otherSlug, frontmatter }) => (
+              <BlogCard
+                key={otherSlug}
+                post={{ slug: otherSlug, frontmatter }}
+              />
+            ))}
+          </LoadMoreGrid>
+        </Section>
+      )}
+    </>
   );
 }
