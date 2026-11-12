@@ -1,80 +1,47 @@
 /*
- * Design tokens (SPEC: Design system, Blue Glass palette).
- * The theme is switched by `data-theme` on <html>. Dark is the default.
+ * Design tokens (specs/portfolio-clone-spec.md, section 3.1).
+ * The theme is switched by `data-theme` on <html>. Light is the default.
  * To change palette, edit the values here; components only use the variables.
  */
 
 :root,
-:root[data-theme="dark"] {
-  color-scheme: dark;
-
-  --bg: #070d1c;
-  --surface: #0e1730;
-  --text: #eaf1ff;
-  --muted: #b7c6e4;
-  --accent: #3d8bff;
-  --accent-contrast: #070d1c;
-  --accent-text: #6aa7ff;
-  --accent-2: #8fd3f4;
-  --border: rgb(255 255 255 / 0.22);
-
-  --glass-fill: rgb(8 16 40 / 0.42);
-  --glass-sheen: linear-gradient(
-    135deg,
-    rgb(255 255 255 / 0.2) 0%,
-    rgb(255 255 255 / 0.04) 50%,
-    rgb(255 255 255 / 0.14) 100%
-  );
-  --glass-filter: blur(var(--glass-blur)) saturate(180%) brightness(0.9);
-  --glass-edge:
-    inset 1.5px 1.5px 0 rgb(255 255 255 / 0.45),
-    inset -1px -1px 0 rgb(255 255 255 / 0.12),
-    inset 0 0 20px rgb(255 255 255 / 0.06);
-  --glass-shadow: 0 16px 40px rgb(0 0 0 / 0.35);
-
-  --shape-1: rgb(61 139 255 / 0.7);
-  --shape-2: rgb(20 48 95 / 0.7);
-  --shape-3: rgb(143 211 244 / 0.25);
-}
-
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg: #eef4ff;
-  --surface: #ffffff;
-  --text: #0b1630;
-  --muted: #44587d;
-  --accent: #1f5fd6;
-  --accent-contrast: #ffffff;
-  --accent-text: #1f5fd6;
-  --accent-2: #0b6f94;
-  --border: rgb(255 255 255 / 0.6);
-
-  --glass-fill: rgb(255 255 255 / 0.45);
-  --glass-sheen: linear-gradient(
-    135deg,
-    rgb(255 255 255 / 0.7) 0%,
-    rgb(255 255 255 / 0.1) 50%,
-    rgb(255 255 255 / 0.4) 100%
-  );
-  --glass-filter: blur(var(--glass-blur)) saturate(180%);
-  --glass-edge:
-    inset 1.5px 1.5px 0 rgb(255 255 255 / 0.8),
-    inset -1px -1px 0 rgb(11 22 48 / 0.08);
-  --glass-shadow: 0 16px 40px rgb(20 50 110 / 0.15);
-
-  --shape-1: rgb(106 167 255 / 0.4);
-  --shape-2: rgb(143 211 244 / 0.4);
-  --shape-3: rgb(106 167 255 / 0.3);
+  --bg: #ffffff;
+  --text: #303030;
+  --text-inverse: #ffffff;
+  /* The reference uses #8f8f8f, which fails WCAG AA on white and on
+     --surface. This is the lightest grey that passes on both. */
+  --text-muted: #707070;
+  --text-muted-2: #707070;
+  --border: #dadada;
+  --surface: #f5f5f5;
+  --surface-dark: #303030;
+  --accent: #5e67e6;
+  /* Text and icons placed on --accent. */
+  --on-accent: #ffffff;
+  --nav-bg: rgb(255 255 255 / 0.9);
+  --success: #0bde66;
+  /* The reference uses #ff2244 in both themes; darkened here so error text
+     passes AA on white. */
+  --error: #e0102f;
 }
 
-:root {
-  --glass-blur: 24px;
-}
+:root[data-theme="dark"] {
+  color-scheme: dark;
 
-/* Smaller blur on phones (SPEC: Liquid Glass style). */
-@media (max-width: 767px) {
-  :root {
-    --glass-blur: 14px;
-  }
+  --bg: #1a1a1b;
+  --text: #ffffff;
+  --text-inverse: #303030;
+  --text-muted: #b5b5b5;
+  --text-muted-2: #d4d4d4;
+  --border: #5c5c5c;
+  --surface: #333333;
+  --surface-dark: #303030;
+  --accent: #d0ff71;
+  --on-accent: #1a1a1b;
+  --nav-bg: rgb(15 15 15 / 0.9);
+  --success: #0bde66;
+  --error: #ff6b81;
 }

@@ -6,87 +6,139 @@
 
 @theme inline {
   --color-background: var(--bg);
-  --color-surface: var(--surface);
   --color-foreground: var(--text);
-  --color-muted: var(--muted);
-  --color-accent: var(--accent);
-  --color-accent-contrast: var(--accent-contrast);
-  --color-accent-text: var(--accent-text);
-  --color-accent-2: var(--accent-2);
+  --color-inverse: var(--text-inverse);
+  --color-muted: var(--text-muted);
+  --color-muted-2: var(--text-muted-2);
   --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-surface-dark: var(--surface-dark);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-nav: var(--nav-bg);
+  --color-success: var(--success);
+  --color-error: var(--error);
 
-  --font-heading: var(--font-space-grotesk);
+  --font-heading: var(--font-antonio);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-jetbrains-mono);
 
-  --radius-card: 2rem;
-  --radius-pill: 999px;
+  --radius-card: 20px;
+  --radius-nav: 28px;
 
-  /* Breakpoints from the SPEC: 360, 768, 1024 and 1440. */
-  --breakpoint-xs: 22.5rem;
-  --breakpoint-2xl: 90rem;
-}
-
-html {
-  scroll-behavior: smooth;
+  /* The reference's breakpoints: phone < 810, tablet 810 to 1199, desktop
+     from 1200. In rem so they sort correctly with Tailwind's own. */
+  --breakpoint-tablet: 50.625rem;
+  --breakpoint-desktop: 75rem;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 24px;
+  /* Theme change: the variables swap and the colours ease over. */
+  transition:
+    background-color 0.3s,
+    color 0.3s;
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent-text);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
 
 /*
- * One glass utility (SPEC: Liquid Glass style). Use blur only on cards, the
- * navbar, inputs and buttons, and never stack more than two glass layers.
+ * Type scale (clone spec 3.2). Sizes step down at the tablet and phone
+ * breakpoints: H1 120 / 88 / 56, H2 60 / 48 / 36, H3 32 / 28 / 24.
  */
-@utility glass {
-  background: var(--glass-sheen), var(--glass-fill);
-  border: 1px solid var(--border);
-  box-shadow: var(--glass-edge), var(--glass-shadow);
-  -webkit-backdrop-filter: var(--glass-filter);
-  backdrop-filter: var(--glass-filter);
+@utility type-display {
+  font-family: var(--font-antonio), sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
 
-  /* No backdrop-filter support: fall back to the solid surface colour. */
-  @supports not (
-    (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
-  ) {
-    background: var(--surface);
+  @media (width >= 50.625rem) {
+    font-size: 88px;
   }
 
-  @media (prefers-reduced-transparency: reduce) {
-    background: var(--surface);
-    -webkit-backdrop-filter: none;
-    backdrop-filter: none;
+  @media (width >= 75rem) {
+    font-size: 120px;
   }
 }
 
-/* Featured cards: the same glass with an accent tint. */
-@utility glass-accent {
-  border-color: color-mix(in srgb, var(--accent) 60%, transparent);
-  background:
-    var(--glass-sheen), color-mix(in srgb, var(--accent) 18%, var(--glass-fill));
+@utility type-h2 {
+  font-family: var(--font-antonio), sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.3;
+  text-transform: uppercase;
+
+  @media (width >= 50.625rem) {
+    font-size: 48px;
+  }
+
+  @media (width >= 75rem) {
+    font-size: 60px;
+  }
 }
 
-/* Reveal: hidden until GSAP shows it. Needs JS and allowed motion. */
-@media (prefers-reduced-motion: no-preference) {
-  html.js [data-reveal]:not([data-revealed]),
-  html.js [data-reveal-stagger]:not([data-revealed]) > * {
-    opacity: 0;
+@utility type-number {
+  font-family: var(--font-antonio), sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+
+  @media (width >= 50.625rem) {
+    font-size: 60px;
   }
+}
+
+@utility type-h3 {
+  font-family: var(--font-antonio), sans-serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-transform: uppercase;
+
+  @media (width >= 50.625rem) {
+    font-size: 28px;
+  }
+
+  @media (width >= 75rem) {
+    font-size: 32px;
+  }
+}
+
+@utility type-h4 {
+  font-family: var(--font-antonio), sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.3;
+  text-transform: uppercase;
+
+  @media (width >= 50.625rem) {
+    font-size: 26px;
+  }
+}
+
+@utility type-body-l {
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 27px;
+}
+
+@utility type-small {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 21px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {
@@ -102,28 +154,25 @@ body {
 }
 
 [data-rehype-pretty-code-figure] code span {
-  color: var(--shiki-dark);
-}
-
-[data-theme="light"] [data-rehype-pretty-code-figure] code span {
   color: var(--shiki-light);
 }
 
-/* Print: plain black on white, no glass or backdrop. */
+[data-theme="dark"] [data-rehype-pretty-code-figure] code span {
+  color: var(--shiki-dark);
+}
+
+/* Print: plain black on white. */
 @media print {
   :root,
   :root[data-theme="dark"],
   :root[data-theme="light"] {
     --bg: #fff;
     --text: #000;
-    --muted: #333;
-    --accent-2: #333;
+    --text-muted: #333;
+    --text-muted-2: #333;
+    --accent: #000;
+    --surface: #fff;
     --border: rgb(0 0 0 / 0.2);
-    --glass-fill: transparent;
-    --glass-sheen: none;
-    --glass-edge: none;
-    --glass-shadow: none;
-    --glass-filter: none;
   }
 }
 

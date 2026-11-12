@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Antonio, Inter, JetBrains_Mono } from "next/font/google";
 import { BackdropShapes } from "@/components/ui/BackdropShapes";
 import { site } from "@/data/site";
 import { Footer } from "@/components/ui/Footer";
@@ -11,8 +11,8 @@ import { ThemeScript } from "@/components/ui/ThemeScript";
 import "@/styles/globals.css";
 
 // next/font self-hosts these at build time; no request goes to Google.
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const antonio = Antonio({
+  variable: "--font-antonio",
   subsets: ["latin"],
   display: "swap",
 });
@@ -44,9 +44,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      data-theme="dark"
+      data-theme="light"
       suppressHydrationWarning
-      className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${antonio.variable} ${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <head>
         <ThemeScript />
