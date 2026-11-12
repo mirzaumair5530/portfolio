@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Antonio, Inter, JetBrains_Mono } from "next/font/google";
-import { BackdropShapes } from "@/components/ui/BackdropShapes";
 import { site } from "@/data/site";
-import { Footer } from "@/components/ui/Footer";
 import { ScrollSync } from "@/components/ui/ScrollSync";
+import { CustomCursor } from "@/components/layout/CustomCursor";
+import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/layout/MotionProvider";
 import { Nav } from "@/components/layout/Nav";
+import { NoiseOverlay } from "@/components/layout/NoiseOverlay";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
+import { ThemeSwitch } from "@/components/layout/ThemeSwitch";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { ThemeScript } from "@/components/ui/ThemeScript";
 import "@/styles/globals.css";
@@ -61,18 +63,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <MotionProvider>
             <a
               href="#main"
-              className="bg-accent text-accent-contrast fixed top-2 left-2 z-[70] -translate-y-20 rounded-full px-4 py-2 text-sm font-semibold focus:translate-y-0"
+              className="bg-accent text-on-accent fixed top-2 left-2 z-[90] -translate-y-20 rounded-full px-4 py-2 text-sm font-semibold focus:translate-y-0"
             >
               Skip to content
             </a>
             <SmoothScroll />
             <ScrollSync />
-            <BackdropShapes />
             <Nav />
             <main id="main" className="flex-1 pt-32 print:pt-0">
               {children}
             </main>
             <Footer />
+            <ThemeSwitch />
+            <NoiseOverlay />
+            <CustomCursor />
           </MotionProvider>
         </ThemeProvider>
       </body>
