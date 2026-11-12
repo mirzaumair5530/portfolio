@@ -40,11 +40,7 @@ export function Hero() {
         </ul>
       </div>
 
-      {/* Static crystal: the fallback, hidden while the 3D scene is running. */}
-      <div
-        data-crystal-fallback
-        className="flex justify-center transition-opacity duration-700"
-      >
+      <div className="flex justify-center">
         <CrystalImage className="w-full max-w-sm" />
       </div>
     </Container>
