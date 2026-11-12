@@ -94,7 +94,7 @@ export default async function ProjectPage({
                 <li key={link.url} className="flex flex-col">
                   <Button
                     href={link.url}
-                    variant={i === 0 ? "primary" : "outline"}
+                    variant={i === 0 ? "accent" : "outline"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >

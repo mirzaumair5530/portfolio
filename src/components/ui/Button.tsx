@@ -1,7 +1,12 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
 
-type Variant = "primary" | "outline";
+/**
+ * - `outline`: accent border and label; fills with the accent on hover.
+ * - `dark`: dark pill with a white label ("Load more", "Subscribe").
+ * - `accent`: filled accent pill ("Back home").
+ */
+type Variant = "outline" | "dark" | "accent";
 
 type ButtonProps = {
   variant?: Variant;
@@ -12,17 +17,17 @@ type ButtonProps = {
 );
 
 const base =
-  "inline-flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold transition-transform hover:scale-[1.03] active:scale-100 disabled:cursor-not-allowed disabled:opacity-50";
+  "type-h4 inline-flex h-12 cursor-pointer items-center justify-center gap-2 rounded-full px-6 whitespace-nowrap transition-colors duration-300 disabled:cursor-not-allowed disabled:opacity-50";
 
 const variants: Record<Variant, string> = {
-  // Accent fill with a white sheen on the top half and a bright inset edge.
-  primary:
-    "bg-accent text-accent-contrast bg-[linear-gradient(180deg,rgb(255_255_255/0.35)_0%,rgb(255_255_255/0)_55%)] shadow-[inset_0_1.5px_0_rgb(255_255_255/0.6)]",
-  outline: "glass text-foreground",
+  outline:
+    "border-accent text-accent hover:bg-accent hover:text-on-accent border",
+  dark: "bg-surface-dark hover:bg-accent hover:text-on-accent text-white",
+  accent: "bg-accent text-on-accent hover:bg-surface-dark hover:text-white",
 };
 
 export function Button({
-  variant = "primary",
+  variant = "outline",
   className,
   ...props
 }: ButtonProps) {

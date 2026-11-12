@@ -53,9 +53,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <ThemeScript />
-        {/* Reveal content starts hidden; without scripts it must just show. */}
+        {/* Reveal content and closed accordion panels start hidden; without
+            scripts they must just show. */}
         <noscript>
-          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}[data-accordion-panel]{height:auto!important;opacity:1!important}`}</style>
         </noscript>
       </head>
       <body className="flex min-h-full flex-col">

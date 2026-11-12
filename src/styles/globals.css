@@ -32,6 +32,45 @@
   --breakpoint-desktop: 75rem;
 }
 
+/* Wave badge: the hand waves, and it swaps places with "Hi" every 2.5 s. */
+@theme {
+  --animate-wave: wave 1.25s ease-in-out infinite;
+  --animate-badge-swap: badge-swap 5s linear infinite;
+
+  @keyframes wave {
+    0%,
+    100% {
+      rotate: 0deg;
+    }
+    20% {
+      rotate: 18deg;
+    }
+    40% {
+      rotate: -10deg;
+    }
+    60% {
+      rotate: 14deg;
+    }
+    80% {
+      rotate: -6deg;
+    }
+  }
+
+  @keyframes badge-swap {
+    0%,
+    45% {
+      opacity: 1;
+    }
+    50%,
+    95% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--text);

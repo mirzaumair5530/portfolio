@@ -592,7 +592,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 - [x] **R2.1** Build the floating nav: open and collapsed states, link text roll, Contact button fill, and the phone menu (4.1).
 - [x] **R2.2** Build the footer, noise overlay, custom cursor and theme switch (4.2, 4.3, 4.4, 4.6).
-- [ ] **R2.3** Build the shared components: SectionHeader, OutlineButton, DarkButton, CategoryBadge, AvatarCard, WaveBadge, Counter and Accordion (4.7).
+- [x] **R2.3** Build the shared components: SectionHeader, OutlineButton, DarkButton, CategoryBadge, AvatarCard, WaveBadge, Counter and Accordion (4.7).
 
 **Done when:** the nav collapses on scroll down and reopens on scroll up, the theme switch persists, and the cursor is off on touch devices.
 
