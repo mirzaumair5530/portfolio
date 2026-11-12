@@ -203,6 +203,19 @@ body {
   line-height: 21px;
 }
 
+/* Top padding of a page: the first heading starts 120 px below the nav. */
+@utility page-top {
+  padding-top: 140px;
+
+  @media (width >= 50.625rem) {
+    padding-top: 196px;
+  }
+
+  @media print {
+    padding-top: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -7,8 +7,8 @@ export const contentType = ogContentType;
 export default function Image() {
   return renderOgImage({
     kicker: "Projects",
-    title: "Things I’ve built.",
+    title: "Featured projects",
     subtitle:
-      "Full-stack products and experiments: the problem, the role, the stack and the result.",
+      "Full-stack products and experiments: the problem, the solution and the result.",
   });
 }
