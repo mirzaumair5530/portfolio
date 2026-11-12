@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: url("/"), lastModified: new Date(resume.updatedAt) },
+    { url: url("/about"), lastModified: new Date(resume.updatedAt) },
     { url: url("/projects") },
     { url: url("/blogs") },
     { url: url("/resume"), lastModified: new Date(resume.updatedAt) },

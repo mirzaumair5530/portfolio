@@ -12,9 +12,25 @@ type OgImageProps = {
   subtitle?: string;
 };
 
-// Share card in the Blue Glass palette. ImageResponse only supports a flexbox
-// subset of CSS, so the layout is built from nested flex containers.
+// The light theme's colours (src/styles/tokens.css). ImageResponse cannot read
+// CSS variables, so they are repeated here.
+const colors = {
+  bg: "#ffffff",
+  text: "#303030",
+  muted: "#707070",
+  accent: "#5e67e6",
+};
+
+// Share card in the site's light palette: an outlined badge, an uppercase
+// title and the name on an accent footer. ImageResponse only supports a
+// flexbox subset of CSS, so the layout is built from nested flex containers.
 export function renderOgImage({ kicker, title, subtitle }: OgImageProps) {
+  const initials = site.name
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((word) => word[0])
+    .join("");
+
   return new ImageResponse(
     <div
       style={{
@@ -22,48 +38,42 @@ export function renderOgImage({ kicker, title, subtitle }: OgImageProps) {
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        padding: 72,
-        color: "#eaf1ff",
-        background:
-          "radial-gradient(circle at 85% 15%, #1f4fa8 0%, #0e1730 45%, #070d1c 100%)",
+        color: colors.text,
+        background: colors.bg,
       }}
     >
       <div
         style={{
           display: "flex",
-          alignItems: "center",
-          gap: 16,
-          fontSize: 30,
-          color: "#8fd3f4",
+          flexDirection: "column",
+          flexGrow: 1,
+          justifyContent: "center",
+          gap: 28,
+          padding: "0 72px",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            width: 56,
-            height: 56,
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 14,
-            border: "2px solid #3d8bff",
-            color: "#6aa7ff",
-            fontSize: 26,
-          }}
-        >
-          UF
+        <div style={{ display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              padding: "6px 24px",
+              borderRadius: 99,
+              border: `2px solid ${colors.accent}`,
+              color: colors.accent,
+              fontSize: 26,
+            }}
+          >
+            {kicker}
+          </div>
         </div>
-        {kicker.toUpperCase()}
-      </div>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
         <div
           style={{
             display: "flex",
-            fontSize: title.length > 48 ? 64 : 80,
+            fontSize: title.length > 40 ? 68 : 88,
             fontWeight: 700,
-            lineHeight: 1.1,
+            lineHeight: 1.05,
             letterSpacing: -2,
+            textTransform: "uppercase",
           }}
         >
           {title}
@@ -72,9 +82,9 @@ export function renderOgImage({ kicker, title, subtitle }: OgImageProps) {
           <div
             style={{
               display: "flex",
-              fontSize: 32,
-              lineHeight: 1.35,
-              color: "#b7c6e4",
+              fontSize: 30,
+              lineHeight: 1.4,
+              color: colors.muted,
             }}
           >
             {subtitle.length > 140 ? `${subtitle.slice(0, 137)}…` : subtitle}
@@ -82,7 +92,33 @@ export function renderOgImage({ kicker, title, subtitle }: OgImageProps) {
         ) : null}
       </div>
 
-      <div style={{ display: "flex", fontSize: 28, color: "#b7c6e4" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 20,
+          padding: "28px 72px",
+          background: colors.accent,
+          color: "#ffffff",
+          fontSize: 28,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            width: 52,
+            height: 52,
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 99,
+            background: "#ffffff",
+            color: colors.accent,
+            fontSize: 22,
+            fontWeight: 700,
+          }}
+        >
+          {initials}
+        </div>
         {site.name}
       </div>
     </div>,
