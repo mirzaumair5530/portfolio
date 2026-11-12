@@ -20,7 +20,7 @@ export function AboutPanel() {
         />
         <SectionHeader title="About me">{site.copy.about}</SectionHeader>
 
-        <Reveal as="ul" stagger className="flex flex-wrap gap-x-10 gap-y-6">
+        <Reveal as="ul" stagger className="grid grid-cols-3 gap-5">
           {site.stats.map((stat) => (
             <RevealItem
               as="li"

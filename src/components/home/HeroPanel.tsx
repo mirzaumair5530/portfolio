@@ -3,7 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { site } from "@/data/site";
 
 // One screen tall. On desktop the two role words sit either side of the card;
-// below that they stack above and below it. The words are decorative copies:
+// below that they stack above and below it. The columns may shrink below the
+// words, which then overflow away from the card. The words are decorative copies:
 // the real heading is the visually hidden <h1>.
 export function HeroPanel() {
   const [firstWord, secondWord] = site.role;
@@ -11,12 +12,12 @@ export function HeroPanel() {
   return (
     <Container
       as="section"
-      className="flex min-h-screen items-center justify-center overflow-x-clip py-24"
+      className="flex min-h-screen items-center justify-center py-24"
     >
       <h1 className="sr-only">
         {site.name}, {firstWord} {secondWord}
       </h1>
-      <div className="flex flex-col items-center gap-5 desktop:grid desktop:w-full desktop:grid-cols-[1fr_auto_1fr]">
+      <div className="flex flex-col items-center gap-5 desktop:grid desktop:w-full desktop:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]">
         <div className="motion-safe:animate-enter-left relative desktop:justify-self-end">
           <p className="type-h3 max-desktop:text-center desktop:absolute desktop:bottom-full desktop:left-0 desktop:whitespace-nowrap">
             {site.name}

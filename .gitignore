@@ -43,3 +43,6 @@ next-env.d.ts
 
 # IDE and OS files
 .idea/
+
+# Playwright MCP output
+.playwright-mcp/
