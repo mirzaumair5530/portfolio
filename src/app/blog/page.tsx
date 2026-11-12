@@ -21,7 +21,7 @@ export default function BlogPage() {
   }));
 
   return (
-    <Container>
+    <Container className="pt-32 pb-24 print:pt-0">
       <SectionHeading as="h1" kicker="Blog" title="Notes on building." />
       <p className="text-muted mt-6 mb-10 max-w-xl leading-8">
         Short write-ups on React, Node.js, MongoDB and the things I learn while

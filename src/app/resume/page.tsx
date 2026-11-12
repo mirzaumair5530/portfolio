@@ -32,7 +32,7 @@ function Section({
 
 export default function ResumePage() {
   return (
-    <Container>
+    <Container className="pt-32 pb-24 print:pt-0">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto]">
         <div className="max-w-3xl">
           <header className="pb-8">

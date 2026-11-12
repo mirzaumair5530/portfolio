@@ -1,15 +1,12 @@
+import { AboutPanel } from "@/components/home/AboutPanel";
 import { BlogPreview } from "@/components/home/BlogPreview";
-import { Faq } from "@/components/home/Faq";
-import { Testimonials } from "@/components/home/Testimonials";
-import { About } from "@/components/sections/About";
 import { Contact } from "@/components/home/Contact";
-import { Experience } from "@/components/sections/Experience";
+import { Faq } from "@/components/home/Faq";
 import { FeaturedProjects } from "@/components/home/FeaturedProjects";
-import { Hero } from "@/components/sections/Hero";
-import { Skills } from "@/components/sections/Skills";
-import { ProgressRail } from "@/components/ui/ProgressRail";
-import { ScrollSpy } from "@/components/ui/ScrollSpy";
-
+import { HeroPanel } from "@/components/home/HeroPanel";
+import { PinnedScene } from "@/components/home/PinnedScene";
+import { ServicesPanel } from "@/components/home/ServicesPanel";
+import { Testimonials } from "@/components/home/Testimonials";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { resume } from "@/data/resume";
 import { site } from "@/data/site";
@@ -31,20 +28,19 @@ export default function Home() {
           jobTitle: resume.headline,
           description: site.tagline,
           url: site.url,
-          sameAs: resume.links.map((link) => link.url),
+          sameAs: site.socials.map((social) => social.href),
         }}
       />
-      <Hero />
-      <About />
-      <Experience />
-      <Skills />
+      <PinnedScene>
+        <HeroPanel />
+        <ServicesPanel />
+        <AboutPanel />
+      </PinnedScene>
       <FeaturedProjects />
       <Testimonials />
       <Faq />
       <BlogPreview />
       <Contact />
-      <ProgressRail />
-      <ScrollSpy />
     </>
   );
 }

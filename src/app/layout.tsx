@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Antonio, Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/data/site";
-import { ScrollSync } from "@/components/ui/ScrollSync";
 import { CustomCursor } from "@/components/layout/CustomCursor";
 import { Footer } from "@/components/layout/Footer";
 import { MotionProvider } from "@/components/layout/MotionProvider";
@@ -59,7 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <style>{`[data-reveal]{opacity:1!important;transform:none!important}[data-accordion-panel]{height:auto!important;opacity:1!important}`}</style>
         </noscript>
       </head>
-      <body className="flex min-h-full flex-col">
+      <body className="flex min-h-full flex-col overflow-x-clip">
         <ThemeProvider>
           <MotionProvider>
             <a
@@ -69,9 +68,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               Skip to content
             </a>
             <SmoothScroll />
-            <ScrollSync />
             <Nav />
-            <main id="main" className="flex-1 pt-32 print:pt-0">
+            <main id="main" className="flex-1">
               {children}
             </main>
             <Footer />

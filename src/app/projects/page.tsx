@@ -20,7 +20,7 @@ export default function ProjectsPage() {
   }));
 
   return (
-    <Container>
+    <Container className="pt-32 pb-24 print:pt-0">
       <SectionHeading as="h1" kicker="Projects" title="Things I’ve built." />
       <p className="text-muted mt-6 max-w-xl leading-8">
         Full-stack products and experiments. Pick a project to read the problem,

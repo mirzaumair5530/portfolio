@@ -127,8 +127,7 @@ export const site = {
     },
     {
       title: "Test",
-      description:
-        "Real devices, slow networks, keyboards and screen readers.",
+      description: "Real devices, slow networks, keyboards and screen readers.",
     },
     {
       title: "Launch",
@@ -138,7 +137,8 @@ export const site = {
 
   testimonials: [
     {
-      quote: "[A short quote from a client or colleague about working with you.]",
+      quote:
+        "[A short quote from a client or colleague about working with you.]",
       name: "[Client name]",
       role: "[Role, Company]",
       avatar: noImage,

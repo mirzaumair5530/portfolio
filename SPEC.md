@@ -603,7 +603,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **R3.1** Testimonials grid with stat cards, FAQ with the sticky heading, and the blog preview (5.3, 5.4, 5.5).
 - [x] **R3.2** Contact section: avatar card and the form with the Service Needed field (5.6).
 - [x] **R3.3** Featured projects as stacking cards that scale down when covered (5.2).
-- [ ] **R3.4** The pinned scene: one card that stays on screen through Hero, Services and About, moves right and flips twice (5.1). Remove the old home sections.
+- [x] **R3.4** The pinned scene: one card that stays on screen through Hero, Services and About, moves right and flips twice (5.1). Remove the old home sections.
 
 **Done when:** the hero card stays pinned through three panels and flips twice, project cards pin at 80 px and the covered card shrinks to 0.8, and only one accordion item is open at a time.
 

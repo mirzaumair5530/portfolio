@@ -56,13 +56,11 @@ export function StackCard({
           aria-hidden="true"
           className="absolute inset-0 bg-[linear-gradient(rgb(12_12_13/0.45),rgb(12_12_13/0.8))]"
         />
-        <span className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 text-center text-white">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 p-6 text-center text-white">
           <CategoryBadge filled>{fm.category}</CategoryBadge>
-          <span role="heading" aria-level={3} className="type-h2">
-            {fm.title}
-          </span>
-          <span className="type-small max-w-[560px]">{fm.summary}</span>
-        </span>
+          <h3 className="type-h2">{fm.title}</h3>
+          <p className="type-small max-w-[560px]">{fm.summary}</p>
+        </div>
       </Link>
     </motion.li>
   );

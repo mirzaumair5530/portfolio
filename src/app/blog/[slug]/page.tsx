@@ -54,7 +54,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
   const postUrl = `${site.url}/blog/${slug}`;
 
   return (
-    <Container>
+    <Container className="pt-32 pb-24 print:pt-0">
       <JsonLd
         data={{
           "@context": "https://schema.org",
