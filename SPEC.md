@@ -634,7 +634,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 - [x] **R6.1** Remove GSAP, Zustand and every component, data field and style the redesign no longer uses.
 - [x] **R6.2** Update the sitemap, RSS feed, JSON-LD and share images for the new routes and palette.
-- [ ] **R6.3** Responsive pass at 1440, 1200, 810 and 390 px, a reduced-motion pass and a dark-mode pass (section 13).
+- [x] **R6.3** Responsive pass at 1440, 1200, 810 and 390 px, a reduced-motion pass and a dark-mode pass (section 13).
 - [ ] **R6.4** Update `CLAUDE.md` for the new architecture.
 
 **Done when:** the acceptance checklist in section 18 of the clone spec passes, and reduced-motion visitors get a static, fully readable page.

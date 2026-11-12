@@ -6,6 +6,11 @@ import { site } from "@/data/site";
 // below that they stack above and below it. The columns may shrink below the
 // words, which then overflow away from the card. The words are decorative copies:
 // the real heading is the visually hidden <h1>.
+// Just above 1200 px the full 120 px words are wider than the space beside the
+// card, so they scale with the viewport until there is room.
+const wordClass =
+  "type-display whitespace-nowrap desktop:text-[clamp(96px,8.8vw,120px)]!";
+
 export function HeroPanel() {
   const [firstWord, secondWord] = site.role;
 
@@ -22,7 +27,7 @@ export function HeroPanel() {
           <p className="type-h3 max-desktop:text-center desktop:absolute desktop:bottom-full desktop:left-0 desktop:whitespace-nowrap">
             {site.name}
           </p>
-          <p aria-hidden="true" className="type-display whitespace-nowrap">
+          <p aria-hidden="true" className={wordClass}>
             {firstWord}
           </p>
         </div>
@@ -34,8 +39,8 @@ export function HeroPanel() {
           keepSpace
         />
 
-        <div className="motion-safe:animate-enter-right relative desktop:justify-self-start">
-          <p aria-hidden="true" className="type-display whitespace-nowrap">
+        <div className="motion-safe:animate-enter-right relative max-desktop:text-center desktop:justify-self-start">
+          <p aria-hidden="true" className={wordClass}>
             {secondWord}
           </p>
           <p className="type-body-l max-desktop:mt-2 max-desktop:max-w-[320px] max-desktop:text-center desktop:absolute desktop:top-full desktop:right-0 desktop:w-[300px] desktop:text-right">

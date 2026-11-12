@@ -8,16 +8,20 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { site } from "@/data/site";
 
-// Content in the left half; the pinned card sits in the right half.
+// Content in the left half; the pinned card sits in the right half. With
+// reduced motion the static image takes the right half instead.
 export function AboutPanel() {
   return (
-    <Container as="section" className="flex min-h-screen items-center py-20">
-      <div className="flex w-full flex-col gap-10 tablet:w-1/2 tablet:pr-10">
-        <PanelImage
-          image={site.images.portrait}
-          label="Portrait photo"
-          className="self-center"
-        />
+    <Container
+      as="section"
+      className="flex min-h-screen flex-col justify-center gap-10 py-20 tablet:grid tablet:grid-cols-2 tablet:items-center tablet:gap-0"
+    >
+      <PanelImage
+        image={site.images.portrait}
+        label="Portrait photo"
+        className="self-center tablet:order-last tablet:justify-self-center"
+      />
+      <div className="flex flex-col gap-10 tablet:pr-10">
         <SectionHeader title="About me">{site.copy.about}</SectionHeader>
 
         <Reveal as="ul" stagger className="grid grid-cols-3 gap-5">
