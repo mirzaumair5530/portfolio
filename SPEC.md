@@ -635,7 +635,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **R6.1** Remove GSAP, Zustand and every component, data field and style the redesign no longer uses.
 - [x] **R6.2** Update the sitemap, RSS feed, JSON-LD and share images for the new routes and palette.
 - [x] **R6.3** Responsive pass at 1440, 1200, 810 and 390 px, a reduced-motion pass and a dark-mode pass (section 13).
-- [ ] **R6.4** Update `CLAUDE.md` for the new architecture.
+- [x] **R6.4** Update `CLAUDE.md` for the new architecture.
 
 **Done when:** the acceptance checklist in section 18 of the clone spec passes, and reduced-motion visitors get a static, fully readable page.
 
@@ -644,8 +644,8 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 **Goal:** every placeholder replaced with your real material.
 
 - [ ] **M7.1** Fill `resume.ts` with your latest resume and export the PDF to `public/umair-farooq-resume.pdf`.
-- [ ] **M7.2** Write the about text and add your photo.
-- [ ] **M7.3** Add three to six projects as MDX files, each with cover, stack, role, result and links, following the project detail structure.
+- [ ] **M7.2** Fill `src/data/site.ts`: the about text, phone, social links, stats, services, testimonials and FAQs, and add your photos to `public/` (the `images` slots).
+- [ ] **M7.3** Add three to six projects as MDX files, each with cover, category, year, industry, client, duration, stack and links, and a body of Problem, Solution, Challenge and Summary with `<Figure>` images.
 - [ ] **M7.4** Mark three or four projects as featured and set their order.
 - [ ] **M7.5** Write two or three launch blog posts.
 - [ ] **M7.6** Add alt text to every image.
