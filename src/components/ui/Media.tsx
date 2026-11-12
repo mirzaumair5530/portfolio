@@ -4,7 +4,8 @@ import { cn } from "@/lib/cn";
 type MediaProps = {
   /** `null` or no `src` shows the labelled placeholder. */
   image?: { src?: string; alt?: string } | null;
-  /** Names the missing image, for example "Portrait photo". */
+  /** Names the missing image, for example "Portrait photo". Pass "" when
+   *  other content sits on top of the placeholder. */
   label: string;
   /** Passed to next/image; describe the rendered width. */
   sizes: string;
@@ -43,7 +44,7 @@ export function Media({
         className,
       )}
     >
-      [{label}]
+      {label ? `[${label}]` : null}
     </span>
   );
 }

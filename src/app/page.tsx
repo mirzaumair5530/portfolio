@@ -4,7 +4,7 @@ import { Testimonials } from "@/components/home/Testimonials";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/home/Contact";
 import { Experience } from "@/components/sections/Experience";
-import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
+import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { Hero } from "@/components/sections/Hero";
 import { Skills } from "@/components/sections/Skills";
 import { ProgressRail } from "@/components/ui/ProgressRail";
