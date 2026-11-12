@@ -24,6 +24,10 @@ export type ContentEntry<T> = {
 export type Project = ContentEntry<ProjectFrontmatter>;
 export type Post = ContentEntry<PostFrontmatter>;
 
+/** What cards need. The MDX body stays on the server. */
+export type ProjectSummary = Pick<Project, "slug" | "frontmatter">;
+export type PostSummary = Pick<Post, "slug" | "frontmatter">;
+
 // Drafts show in development and are hidden in production builds.
 const showDrafts = process.env.NODE_ENV !== "production";
 

@@ -1,9 +1,11 @@
+import { BlogPreview } from "@/components/home/BlogPreview";
+import { Faq } from "@/components/home/Faq";
+import { Testimonials } from "@/components/home/Testimonials";
 import { About } from "@/components/sections/About";
 import { Contact } from "@/components/sections/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Hero } from "@/components/sections/Hero";
-import { LatestPosts } from "@/components/sections/LatestPosts";
 import { Skills } from "@/components/sections/Skills";
 import { ProgressRail } from "@/components/ui/ProgressRail";
 import { ScrollSpy } from "@/components/ui/ScrollSpy";
@@ -37,7 +39,9 @@ export default function Home() {
       <Experience />
       <Skills />
       <FeaturedProjects />
-      <LatestPosts />
+      <Testimonials />
+      <Faq />
+      <BlogPreview />
       <Contact />
       <ProgressRail />
       <ScrollSpy />
