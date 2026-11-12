@@ -3,9 +3,9 @@ import { Antonio, Inter, JetBrains_Mono } from "next/font/google";
 import { BackdropShapes } from "@/components/ui/BackdropShapes";
 import { site } from "@/data/site";
 import { Footer } from "@/components/ui/Footer";
-import { Navbar } from "@/components/ui/Navbar";
 import { ScrollSync } from "@/components/ui/ScrollSync";
 import { MotionProvider } from "@/components/layout/MotionProvider";
+import { Nav } from "@/components/layout/Nav";
 import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { ThemeScript } from "@/components/ui/ThemeScript";
@@ -68,7 +68,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <SmoothScroll />
             <ScrollSync />
             <BackdropShapes />
-            <Navbar />
+            <Nav />
             <main id="main" className="flex-1 pt-32 print:pt-0">
               {children}
             </main>

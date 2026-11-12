@@ -1,19 +1,13 @@
-// Links on every route except the home page.
+// The links in the floating nav, in order.
 export const navLinks = [
   { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
-  { href: "/resume", label: "Resume" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/blogs", label: "Blogs" },
 ] as const;
 
-// On the home page the bar links to its sections instead.
-export const homeLinks = [
-  { href: "#about", label: "About" },
-  { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
-  { href: "#blog", label: "Blog" },
-  { href: "#contact", label: "Contact" },
-] as const;
+// The button at the end of the nav. It scrolls to the home contact section.
+export const contactLink = { href: "/#contact", label: "Contact" } as const;
 
+// Only in the phone menu; on larger screens the About page links to it.
 export const resumeLink = { href: "/resume", label: "Resume" } as const;
