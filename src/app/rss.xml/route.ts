@@ -13,7 +13,7 @@ const escapeXml = (value: string) =>
 export async function GET() {
   const items = getPosts()
     .map((post) => {
-      const link = `${site.url}/blog/${post.slug}`;
+      const link = `${site.url}/blogs/${post.slug}`;
       return `    <item>
       <title>${escapeXml(post.frontmatter.title)}</title>
       <link>${link}</link>
@@ -29,7 +29,7 @@ ${post.frontmatter.tags.map((tag) => `      <category>${escapeXml(tag)}</categor
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>${escapeXml(`${site.name} · Blog`)}</title>
-    <link>${site.url}/blog</link>
+    <link>${site.url}/blogs</link>
     <description>${escapeXml(site.seo.description)}</description>
     <language>en</language>
     <atom:link href="${site.url}/rss.xml" rel="self" type="application/rss+xml" />

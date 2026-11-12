@@ -9,13 +9,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: url("/"), lastModified: new Date(resume.updatedAt) },
     { url: url("/projects") },
-    { url: url("/blog") },
+    { url: url("/blogs") },
     { url: url("/resume"), lastModified: new Date(resume.updatedAt) },
     ...getProjects().map((project) => ({
       url: url(`/projects/${project.slug}`),
     })),
     ...getPosts().map((post) => ({
-      url: url(`/blog/${post.slug}`),
+      url: url(`/blogs/${post.slug}`),
       lastModified: new Date(post.frontmatter.date),
     })),
   ];

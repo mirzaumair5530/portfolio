@@ -23,21 +23,21 @@ export function generateStaticParams() {
 
 export async function generateMetadata({
   params,
-}: PageProps<"/blog/[slug]">): Promise<Metadata> {
+}: PageProps<"/blogs/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const post = getPost(slug);
   if (!post) return {};
   return pageMetadata({
     title: post.frontmatter.title,
     description: post.frontmatter.description,
-    path: `/blog/${slug}`,
+    path: `/blogs/${slug}`,
     type: "article",
     publishedTime: post.frontmatter.date,
     tags: post.frontmatter.tags,
   });
 }
 
-export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
+export default async function PostPage({ params }: PageProps<"/blogs/[slug]">) {
   const { slug } = await params;
   // Newest first, so the next index is the older post.
   const posts = getPosts();
@@ -46,12 +46,12 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
 
   const { frontmatter: fm, content, readingTime } = posts[index];
   const toLink = (post?: (typeof posts)[number]) =>
-    post && { href: `/blog/${post.slug}`, title: post.frontmatter.title };
+    post && { href: `/blogs/${post.slug}`, title: post.frontmatter.title };
 
-  const url = encodeURIComponent(`${site.url}/blog/${slug}`);
+  const url = encodeURIComponent(`${site.url}/blogs/${slug}`);
   const text = encodeURIComponent(fm.title);
 
-  const postUrl = `${site.url}/blog/${slug}`;
+  const postUrl = `${site.url}/blogs/${slug}`;
 
   return (
     <Container className="pt-32 pb-24 print:pt-0">
@@ -70,7 +70,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
           author: { "@type": "Person", name: site.name, url: site.url },
         }}
       />
-      <Link href="/blog" className="text-muted text-sm">
+      <Link href="/blogs" className="text-muted text-sm">
         ← All posts
       </Link>
       <p className="text-accent-2 mt-6 font-mono text-xs">

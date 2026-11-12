@@ -5,7 +5,7 @@ type PageMetadata = {
   /** Page title without the site name; the layout template adds it. */
   title?: string;
   description: string;
-  /** Path of the page, for example "/blog/hello-world". */
+  /** Path of the page, for example "/blogs/hello-world". */
   path: string;
   type?: "website" | "article";
   /** "2026-11-01", for articles. */

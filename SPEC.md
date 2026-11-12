@@ -613,7 +613,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 - [x] **R4.1** `/projects`: header, stacking featured cards and the "More projects" grid.
 - [x] **R4.2** `/projects/[slug]`: badge, title, meta grid, cover, content blocks with images, and "More projects" with Load more.
-- [ ] **R4.3** `/blogs`: move the blog from `/blog`; header, pinned post and the two-column grid.
+- [x] **R4.3** `/blogs`: move the blog from `/blog`; header, pinned post and the two-column grid.
 - [ ] **R4.4** `/blogs/[slug]`: title, cover, MDX body, subscribe banner and "More to discover".
 
 **Done when:** every project and post renders from its MDX file at the new routes, and `/blog` no longer exists.
