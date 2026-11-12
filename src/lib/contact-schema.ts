@@ -1,10 +1,17 @@
 import { z } from "zod";
+import { site } from "@/data/site";
 
 // Shared by the form (client) and /api/contact (server), so both agree.
 export const contactSchema = z.object({
   name: z.string().trim().min(1, "Please enter your name.").max(100),
   email: z.email("Please enter a valid email address.").max(200),
-  subject: z.string().trim().max(150).optional(),
+  // One of the options in `site.contactServices`.
+  service: z
+    .string()
+    .refine(
+      (value) => site.contactServices.includes(value),
+      "Please choose a service.",
+    ),
   message: z
     .string()
     .trim()

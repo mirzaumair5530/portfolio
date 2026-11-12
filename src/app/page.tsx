@@ -2,7 +2,7 @@ import { BlogPreview } from "@/components/home/BlogPreview";
 import { Faq } from "@/components/home/Faq";
 import { Testimonials } from "@/components/home/Testimonials";
 import { About } from "@/components/sections/About";
-import { Contact } from "@/components/sections/Contact";
+import { Contact } from "@/components/home/Contact";
 import { Experience } from "@/components/sections/Experience";
 import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Hero } from "@/components/sections/Hero";

@@ -21,9 +21,7 @@ export async function sendContactEmail(input: ContactInput) {
   const from =
     process.env.CONTACT_FROM_EMAIL ?? "Portfolio <onboarding@resend.dev>";
 
-  const subject = input.subject
-    ? oneLine(input.subject)
-    : `New message from ${oneLine(input.name)}`;
+  const subject = `${oneLine(input.service)}: message from ${oneLine(input.name)}`;
 
   const { error } = await resend.emails.send({
     from,
@@ -33,6 +31,7 @@ export async function sendContactEmail(input: ContactInput) {
     text: [
       `Name: ${oneLine(input.name)}`,
       `Email: ${input.email}`,
+      `Service needed: ${oneLine(input.service)}`,
       "",
       input.message,
     ].join("\n"),

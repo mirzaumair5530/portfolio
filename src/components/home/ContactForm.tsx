@@ -3,24 +3,30 @@
 import { useState } from "react";
 import { z } from "zod";
 import { Button } from "@/components/ui/Button";
+import { Icon } from "@/components/ui/Icon";
+import { site } from "@/data/site";
 import { contactSchema } from "@/lib/contact-schema";
 import { cn } from "@/lib/cn";
 
 type Status = "idle" | "sending" | "success" | "error";
 type FieldErrors = Partial<Record<string, string[]>>;
 
+// Inputs sit on the surface colour with no border; an invalid field gets an
+// outline in the error colour.
 const fieldClass =
-  "border-border bg-background/40 text-foreground placeholder:text-muted w-full rounded-xl border px-4 py-3 text-sm aria-[invalid=true]:border-red-400";
+  "bg-surface text-foreground placeholder:text-muted h-12 w-full rounded-full px-6 aria-[invalid=true]:outline-2 aria-[invalid=true]:outline-error";
 
 function Field({
   id,
   label,
   errors,
+  className,
   children,
 }: {
   id: string;
   label: string;
   errors?: string[];
+  className?: string;
   children: (props: {
     id: string;
     "aria-invalid": boolean;
@@ -29,8 +35,8 @@ function Field({
 }) {
   const errorId = `${id}-error`;
   return (
-    <div className="flex flex-col gap-2">
-      <label htmlFor={id} className="text-muted text-xs">
+    <div className={cn("flex flex-col gap-2", className)}>
+      <label htmlFor={id} className="type-small text-accent">
         {label}
       </label>
       {children({
@@ -39,7 +45,7 @@ function Field({
         "aria-describedby": errors?.length ? errorId : undefined,
       })}
       {errors?.length ? (
-        <p id={errorId} className="text-xs text-red-500 dark:text-red-300">
+        <p id={errorId} className="type-small text-error">
           {errors[0]}
         </p>
       ) : null}
@@ -103,14 +109,10 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div role="status" className="flex flex-col items-start gap-4 py-6">
-        <p className="font-heading text-foreground text-2xl font-bold">
-          Message sent.
-        </p>
-        <p className="text-muted">Thanks for reaching out. I’ll reply soon.</p>
-        <Button variant="outline" onClick={() => setStatus("idle")}>
-          Send another message
-        </Button>
+      <div role="status" className="flex flex-col items-start gap-4">
+        <p className="type-h3 text-accent">Message sent.</p>
+        <p className="type-body-l">Thanks for reaching out. I’ll reply soon.</p>
+        <Button onClick={() => setStatus("idle")}>Send another</Button>
       </div>
     );
   }
@@ -119,7 +121,7 @@ export function ContactForm() {
     <form
       onSubmit={onSubmit}
       noValidate
-      className="flex flex-col gap-5"
+      className="relative grid gap-5 sm:grid-cols-2"
       aria-label="Contact form"
     >
       <Field id="contact-name" label="Name" errors={fieldErrors.name}>
@@ -147,22 +149,48 @@ export function ContactForm() {
         )}
       </Field>
       <Field
-        id="contact-subject"
-        label="Subject (optional)"
-        errors={fieldErrors.subject}
+        id="contact-service"
+        label="Service needed"
+        errors={fieldErrors.service}
+        className="sm:col-span-2"
       >
         {(props) => (
-          <input {...props} name="subject" type="text" className={fieldClass} />
+          <div className="relative">
+            <select
+              {...props}
+              name="service"
+              required
+              defaultValue=""
+              className={cn(fieldClass, "cursor-pointer appearance-none pr-12")}
+            >
+              <option value="" disabled>
+                Select…
+              </option>
+              {site.contactServices.map((service) => (
+                <option key={service} value={service}>
+                  {service}
+                </option>
+              ))}
+            </select>
+            <Icon
+              name="chevron-down"
+              className="pointer-events-none absolute top-1/2 right-5 -translate-y-1/2"
+            />
+          </div>
         )}
       </Field>
-      <Field id="contact-message" label="Message" errors={fieldErrors.message}>
+      <Field
+        id="contact-message"
+        label="Message"
+        errors={fieldErrors.message}
+        className="sm:col-span-2"
+      >
         {(props) => (
           <textarea
             {...props}
             name="message"
-            rows={5}
             required
-            className={fieldClass}
+            className={cn(fieldClass, "rounded-card h-[140px] resize-y py-4")}
           />
         )}
       </Field>
@@ -179,24 +207,22 @@ export function ContactForm() {
         />
       </div>
 
-      <Button
-        type="submit"
-        disabled={status === "sending"}
-        className="w-full"
-        aria-busy={status === "sending"}
-      >
-        {status === "sending" ? "Sending…" : "Send message"}
-      </Button>
-
-      <p
-        role="alert"
-        className={cn(
-          "text-center text-sm text-red-500 dark:text-red-300",
-          !message && "sr-only",
-        )}
-      >
-        {message}
-      </p>
+      <div className="flex flex-wrap items-center gap-5 sm:col-span-2">
+        <Button
+          type="submit"
+          disabled={status === "sending"}
+          aria-busy={status === "sending"}
+          className="h-[50px] min-w-[145px]"
+        >
+          {status === "sending" ? "Sending…" : "Submit"}
+        </Button>
+        <p
+          role="alert"
+          className={cn("type-small text-error", !message && "sr-only")}
+        >
+          {message}
+        </p>
+      </div>
     </form>
   );
 }
