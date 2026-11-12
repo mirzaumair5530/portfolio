@@ -8,8 +8,8 @@ export const contentType = ogContentType;
 // Default share image for the home page and every route without its own.
 export default function Image() {
   return renderOgImage({
-    kicker: "Software engineer",
-    title: site.hero.headline,
+    kicker: "Portfolio",
+    title: `${site.name}, ${site.role.join(" ").toLowerCase()}`,
     subtitle: site.tagline,
   });
 }
