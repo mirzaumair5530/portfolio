@@ -582,7 +582,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **R1.2** Remove the 3D scene: `src/components/three`, the scene loader, the capability checks and the three.js packages.
 - [x] **R1.3** Replace the design tokens, fonts and type scale (sections 3.1 to 3.3): Antonio and Inter, light theme by default, lime accent in dark, 1200 px container, 810 and 1200 px breakpoints.
 - [x] **R1.4** Extend the content model (section 14): site data for services, stats, stack, process, testimonials and FAQs; `category`, `year`, `industry`, `client` and `duration` on projects; `category` and `pinned` on posts.
-- [ ] **R1.5** Add Motion, run Lenis without GSAP, and build the reveal helper (section 12, effects 1 and 12).
+- [x] **R1.5** Add Motion, run Lenis without GSAP, and build the reveal helper (section 12, effects 1 and 12).
 
 **Done when:** `pnpm lint` and `pnpm build` pass, the fonts and colours match the token tables in both themes, and no three.js code is left.
 

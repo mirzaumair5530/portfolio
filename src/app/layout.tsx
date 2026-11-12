@@ -5,7 +5,8 @@ import { site } from "@/data/site";
 import { Footer } from "@/components/ui/Footer";
 import { Navbar } from "@/components/ui/Navbar";
 import { ScrollSync } from "@/components/ui/ScrollSync";
-import { SmoothScroll } from "@/components/ui/SmoothScroll";
+import { MotionProvider } from "@/components/layout/MotionProvider";
+import { SmoothScroll } from "@/components/layout/SmoothScroll";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { ThemeScript } from "@/components/ui/ThemeScript";
 import "@/styles/globals.css";
@@ -50,23 +51,29 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <head>
         <ThemeScript />
+        {/* Reveal content starts hidden; without scripts it must just show. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
       </head>
       <body className="flex min-h-full flex-col">
         <ThemeProvider>
-          <a
-            href="#main"
-            className="bg-accent text-accent-contrast fixed top-2 left-2 z-[70] -translate-y-20 rounded-full px-4 py-2 text-sm font-semibold focus:translate-y-0"
-          >
-            Skip to content
-          </a>
-          <SmoothScroll />
-          <ScrollSync />
-          <BackdropShapes />
-          <Navbar />
-          <main id="main" className="flex-1 pt-32 print:pt-0">
-            {children}
-          </main>
-          <Footer />
+          <MotionProvider>
+            <a
+              href="#main"
+              className="bg-accent text-accent-contrast fixed top-2 left-2 z-[70] -translate-y-20 rounded-full px-4 py-2 text-sm font-semibold focus:translate-y-0"
+            >
+              Skip to content
+            </a>
+            <SmoothScroll />
+            <ScrollSync />
+            <BackdropShapes />
+            <Navbar />
+            <main id="main" className="flex-1 pt-32 print:pt-0">
+              {children}
+            </main>
+            <Footer />
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html>

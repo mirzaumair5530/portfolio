@@ -1,6 +1,5 @@
 "use client";
 
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { getLenis, startSmoothScroll } from "@/lib/scroll";
@@ -31,12 +30,9 @@ export function SmoothScroll() {
     };
   }, []);
 
-  // New route: Lenis keeps its own scroll position, so reset it with the page,
-  // then let ScrollTrigger re-measure once the new page has mounted.
+  // New route: Lenis keeps its own scroll position, so reset it with the page.
   useEffect(() => {
     if (!window.location.hash) getLenis()?.scrollTo(0, { immediate: true });
-    const frame = requestAnimationFrame(() => ScrollTrigger.refresh());
-    return () => cancelAnimationFrame(frame);
   }, [pathname]);
 
   return null;
