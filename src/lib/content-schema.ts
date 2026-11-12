@@ -25,8 +25,6 @@ export const projectSchema = z
     industry: z.string().min(1),
     client: z.string().min(1),
     duration: z.string().min(1),
-    role: z.string().min(1),
-    period: z.string().min(1),
     stack: z.array(z.string().min(1)).min(1),
     featured: z.boolean().default(false),
     cover: z.string().optional(),

@@ -1,6 +1,6 @@
 export function Callout({ children }: { children: React.ReactNode }) {
   return (
-    <aside className="glass glass-accent my-6 rounded-2xl p-5 text-sm">
+    <aside className="bg-surface border-accent rounded-card my-6 border-l-4 p-5 [&>p]:my-0">
       {children}
     </aside>
   );

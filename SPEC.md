@@ -612,7 +612,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 **Goal:** the list and detail pages (sections 7 to 10).
 
 - [x] **R4.1** `/projects`: header, stacking featured cards and the "More projects" grid.
-- [ ] **R4.2** `/projects/[slug]`: badge, title, meta grid, cover, content blocks with images, and "More projects" with Load more.
+- [x] **R4.2** `/projects/[slug]`: badge, title, meta grid, cover, content blocks with images, and "More projects" with Load more.
 - [ ] **R4.3** `/blogs`: move the blog from `/blog`; header, pinned post and the two-column grid.
 - [ ] **R4.4** `/blogs/[slug]`: title, cover, MDX body, subscribe banner and "More to discover".
 

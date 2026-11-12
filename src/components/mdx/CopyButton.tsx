@@ -24,7 +24,7 @@ export function CopyButton({ text }: { text: string }) {
     <button
       type="button"
       onClick={copy}
-      className="glass text-muted hover:text-foreground absolute top-3 right-3 cursor-pointer rounded-full px-3 py-1 font-mono text-xs"
+      className="bg-background text-muted hover:text-foreground absolute top-3 right-3 cursor-pointer rounded-full px-3 py-1 font-mono text-xs"
     >
       {copied ? "Copied" : "Copy"}
       <span className="sr-only" aria-live="polite">

@@ -16,7 +16,7 @@ export function CodeBlock({ children, ...props }: React.ComponentProps<"pre">) {
     <div className="relative my-6">
       <pre
         {...props}
-        className="glass overflow-x-auto rounded-2xl p-5 pr-20 font-mono text-sm leading-relaxed"
+        className="bg-surface rounded-card overflow-x-auto p-5 pr-20 font-mono text-sm leading-relaxed"
       >
         {children}
       </pre>
