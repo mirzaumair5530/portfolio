@@ -624,7 +624,7 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 
 - [x] **R5.1** `/about`: the split scene with the sticky image column (About, Services, Experience, Tech stack) and the process bento grid.
 - [x] **R5.2** The 404 page.
-- [ ] **R5.3** Restyle `/resume` in the new tokens and link it from the About page.
+- [x] **R5.3** Restyle `/resume` in the new tokens and link it from the About page.
 
 **Done when:** the About image stays sticky while its column scrolls and changes with the active section, and an unknown URL shows the 404 layout.
 
