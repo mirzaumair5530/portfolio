@@ -2,6 +2,16 @@
 
 Nov 1, 2026 · @Umair Farooq
 
+> **Redesign, Nov 13, 2026.** The site is being rebuilt to the layout in [`specs/portfolio-clone-spec.md`](specs/portfolio-clone-spec.md). That file is now the source of truth for pages, design tokens, components and animation, and it replaces the Blue Glass design system, the 3D scene and the scroll effects described below. This document still owns the goals, the content rules, the launch checklist and the milestones. The redesign is tracked as milestones R1 to R6 in "Milestones and tasks".
+>
+> Decisions taken for the redesign:
+>
+> - The three.js crystal scene is removed. The pinned photo card takes its place.
+> - Animation uses Motion (`motion/react`) with Lenis. GSAP and the Zustand scroll store are removed.
+> - `/resume` (with the PDF download) and the RSS feed stay, although the clone spec does not list them. Blog search, tag filter, pagination and the table of contents are dropped.
+> - The blog moves from `/blog` to `/blogs`, and `/about` is added.
+> - Kept from the first build instead of the clone spec's suggestions: the `data-theme` theme provider (not `next-themes`), the `/api/contact` route handler (not a Server Action with `react-hook-form`), and inline SVG icons (not `lucide-react`). They already do the same job.
+
 ## Goals and scope
 
 Build a modern, scroll-driven 3D portfolio that presents Umair Farooq as a software engineer and keeps the resume, projects and blog easy to update.
@@ -450,7 +460,8 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 | M4 Scroll | Smooth scroll and section animations | M3 |
 | M5 3D | Scroll-driven 3D scene with fallbacks | M3, M4 |
 | M6 Contact and SEO | Working contact form, metadata, sitemap and RSS | M3 |
-| M7 Real content | Placeholders replaced with your resume, projects and posts | M3 |
+| R1 to R6 Redesign | The site rebuilt to `specs/portfolio-clone-spec.md` | M1 to M6 |
+| M7 Real content | Placeholders replaced with your resume, projects and posts | R6 |
 | M8 Launch | Checklist passed, domain connected, site live | All |
 
 **How to work**
@@ -562,6 +573,71 @@ Build the site in nine milestones, M0 to M8. Each milestone has a task checklist
 - [x] **M6.8** Add JSON-LD: `Person` on the home page and `BlogPosting` on posts.
 
 **Done when:** a test message reaches your inbox, a spam attempt is rejected, link previews look right in a preview tool, and the sitemap and RSS feed load without errors.
+
+### R1 · Redesign foundation
+
+**Goal:** the new tokens, fonts, content model and animation stack are in place. Section numbers below refer to `specs/portfolio-clone-spec.md`.
+
+- [x] **R1.1** Track the clone spec in the repository and add the redesign milestones to this document.
+- [ ] **R1.2** Remove the 3D scene: `src/components/three`, the scene loader, the capability checks and the three.js packages.
+- [ ] **R1.3** Replace the design tokens, fonts and type scale (sections 3.1 to 3.3): Antonio and Inter, light theme by default, lime accent in dark, 1200 px container, 810 and 1200 px breakpoints.
+- [ ] **R1.4** Extend the content model (section 14): site data for services, stats, stack, process, testimonials and FAQs; `category`, `year`, `industry`, `client` and `duration` on projects; `category` and `pinned` on posts.
+- [ ] **R1.5** Add Motion, run Lenis without GSAP, and build the reveal helper (section 12, effects 1 and 12).
+
+**Done when:** `pnpm lint` and `pnpm build` pass, the fonts and colours match the token tables in both themes, and no three.js code is left.
+
+### R2 · Shell and shared components
+
+**Goal:** the global elements every page shares (section 4).
+
+- [ ] **R2.1** Build the floating nav: open and collapsed states, link text roll, Contact button fill, and the phone menu (4.1).
+- [ ] **R2.2** Build the footer, noise overlay, custom cursor and theme switch (4.2, 4.3, 4.4, 4.6).
+- [ ] **R2.3** Build the shared components: SectionHeader, OutlineButton, DarkButton, CategoryBadge, AvatarCard, WaveBadge, Counter and Accordion (4.7).
+
+**Done when:** the nav collapses on scroll down and reopens on scroll up, the theme switch persists, and the cursor is off on touch devices.
+
+### R3 · Home page
+
+**Goal:** the home page in the order Hero, Services, About, Featured projects, Testimonials, FAQ, Blog, Contact (section 5).
+
+- [ ] **R3.1** Testimonials grid with stat cards, FAQ with the sticky heading, and the blog preview (5.3, 5.4, 5.5).
+- [ ] **R3.2** Contact section: avatar card and the form with the Service Needed field (5.6).
+- [ ] **R3.3** Featured projects as stacking cards that scale down when covered (5.2).
+- [ ] **R3.4** The pinned scene: one card that stays on screen through Hero, Services and About, moves right and flips twice (5.1). Remove the old home sections.
+
+**Done when:** the hero card stays pinned through three panels and flips twice, project cards pin at 80 px and the covered card shrinks to 0.8, and only one accordion item is open at a time.
+
+### R4 · Projects and blog
+
+**Goal:** the list and detail pages (sections 7 to 10).
+
+- [ ] **R4.1** `/projects`: header, stacking featured cards and the "More projects" grid.
+- [ ] **R4.2** `/projects/[slug]`: badge, title, meta grid, cover, content blocks with images, and "More projects" with Load more.
+- [ ] **R4.3** `/blogs`: move the blog from `/blog`; header, pinned post and the two-column grid.
+- [ ] **R4.4** `/blogs/[slug]`: title, cover, MDX body, subscribe banner and "More to discover".
+
+**Done when:** every project and post renders from its MDX file at the new routes, and `/blog` no longer exists.
+
+### R5 · About, resume and 404
+
+**Goal:** the remaining pages (sections 6 and 11).
+
+- [ ] **R5.1** `/about`: the split scene with the sticky image column (About, Services, Experience, Tech stack) and the process bento grid.
+- [ ] **R5.2** The 404 page.
+- [ ] **R5.3** Restyle `/resume` in the new tokens and link it from the About page.
+
+**Done when:** the About image stays sticky while its column scrolls and changes with the active section, and an unknown URL shows the 404 layout.
+
+### R6 · Cleanup and checks
+
+**Goal:** nothing from the old design is left, and the new one holds at every size.
+
+- [ ] **R6.1** Remove GSAP, Zustand and every component, data field and style the redesign no longer uses.
+- [ ] **R6.2** Update the sitemap, RSS feed, JSON-LD and share images for the new routes and palette.
+- [ ] **R6.3** Responsive pass at 1440, 1200, 810 and 390 px, a reduced-motion pass and a dark-mode pass (section 13).
+- [ ] **R6.4** Update `CLAUDE.md` for the new architecture.
+
+**Done when:** the acceptance checklist in section 18 of the clone spec passes, and reduced-motion visitors get a static, fully readable page.
 
 ### M7 · Real content
 
