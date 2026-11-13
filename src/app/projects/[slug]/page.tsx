@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ProjectCard } from "@/components/cards/ProjectCard";
 import { MdxContent } from "@/components/mdx/MdxContent";
 import { Button } from "@/components/ui/Button";
@@ -29,9 +30,20 @@ export async function generateMetadata({
   });
 }
 
-export default async function ProjectPage({
+// `params` is read inside <Suspense>, not in the page itself, so a navigation
+// to a project that was not prerendered can show the shell at once instead of
+// blocking (Next.js "instant navigation" validation).
+export default function ProjectPage({ params }: PageProps<"/projects/[slug]">) {
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <ProjectContent params={params} />
+    </Suspense>
+  );
+}
+
+async function ProjectContent({
   params,
-}: PageProps<"/projects/[slug]">) {
+}: Pick<PageProps<"/projects/[slug]">, "params">) {
   const { slug } = await params;
   const projects = getProjects();
   const project = projects.find((entry) => entry.slug === slug);

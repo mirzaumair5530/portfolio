@@ -102,7 +102,8 @@ export function SubscribeBanner() {
             variant="dark"
             disabled={status === "sending"}
             aria-busy={status === "sending"}
-            className="hover:text-surface-dark! hover:bg-white!"
+            // On the accent banner the button stays dark in both themes.
+            className="bg-surface-dark! hover:text-surface-dark! text-white! hover:bg-white!"
           >
             {status === "sending" ? "Subscribing…" : "Subscribe"}
           </Button>

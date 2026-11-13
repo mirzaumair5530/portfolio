@@ -42,9 +42,9 @@ export const site = {
 
   // Placeholder numbers; set the real ones in M7.
   stats: [
-    { value: 5, suffix: "+", label: "[Years of experience]" },
-    { value: 20, suffix: "+", label: "[Projects shipped]" },
-    { value: 10, suffix: "+", label: "[Happy clients]" },
+    { value: 5, suffix: "+", label: "[Years]" },
+    { value: 20, suffix: "+", label: "[Projects]" },
+    { value: 10, suffix: "+", label: "[Clients]" },
   ] as { value: number; suffix?: string; label: string }[],
 
   services: [

@@ -3,7 +3,7 @@ import { cn } from "@/lib/cn";
 
 /**
  * - `outline`: accent border and label; fills with the accent on hover.
- * - `dark`: dark pill with a white label ("Load more", "Subscribe").
+ * - `dark`: the contrast pill (dark grey in light, white in dark) ("Load more", "Subscribe").
  * - `accent`: filled accent pill ("Back home").
  */
 type Variant = "outline" | "dark" | "accent";
@@ -22,8 +22,8 @@ const base =
 const variants: Record<Variant, string> = {
   outline:
     "border-accent text-accent hover:bg-accent hover:text-on-accent border",
-  dark: "bg-surface-dark hover:bg-accent hover:text-on-accent text-white",
-  accent: "bg-accent text-on-accent hover:bg-surface-dark hover:text-white",
+  dark: "bg-contrast text-on-contrast hover:bg-accent hover:text-on-accent",
+  accent: "bg-accent text-on-accent hover:bg-contrast hover:text-on-contrast",
 };
 
 export function Button({

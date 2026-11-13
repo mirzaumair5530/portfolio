@@ -36,7 +36,9 @@ export function AboutPanel() {
                 suffix={stat.suffix}
                 className="type-number text-accent"
               />
-              <span className="type-body-l font-semibold!">{stat.label}</span>
+              <span className="type-body-l font-semibold! whitespace-nowrap">
+                {stat.label}
+              </span>
             </RevealItem>
           ))}
         </Reveal>

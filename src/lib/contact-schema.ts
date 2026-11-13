@@ -6,8 +6,10 @@ export const contactSchema = z.object({
   name: z.string().trim().min(1, "Please enter your name.").max(100),
   email: z.email("Please enter a valid email address.").max(200),
   // One of the options in `site.contactServices`.
+  // An untouched <select> sends nothing at all, so the "not a string" case
+  // needs the same message.
   service: z
-    .string()
+    .string("Please choose a service.")
     .refine(
       (value) => site.contactServices.includes(value),
       "Please choose a service.",

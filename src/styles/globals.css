@@ -13,6 +13,8 @@
   --color-border: var(--border);
   --color-surface: var(--surface);
   --color-surface-dark: var(--surface-dark);
+  --color-contrast: var(--contrast);
+  --color-on-contrast: var(--on-contrast);
   --color-accent: var(--accent);
   --color-on-accent: var(--on-accent);
   --color-nav: var(--nav-bg);
@@ -250,6 +252,8 @@ body {
     --text-muted-2: #333;
     --accent: #000;
     --surface: #fff;
+    --contrast: #000;
+    --on-contrast: #fff;
     --border: rgb(0 0 0 / 0.2);
   }
 }

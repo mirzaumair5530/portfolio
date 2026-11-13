@@ -40,33 +40,37 @@ export function PinnedScene({ children }: { children: React.ReactNode }) {
 
   return (
     <div ref={ref} className="relative">
-      {/* Sticky for the whole wrapper; the negative margin lets the panels
-          start at the top instead of below this layer. */}
-      <div className="pointer-events-none sticky top-0 z-10 -mb-[100vh] hidden h-screen items-center justify-center [perspective:1200px] tablet:motion-safe:flex">
-        <div className="motion-safe:animate-enter-scale">
-          <motion.div
-            style={{ x, rotateY, rotateZ, transformStyle: "preserve-3d" }}
-            className={cn("relative", avatarCardSize)}
-          >
-            <div className="absolute inset-0 [backface-visibility:hidden]">
-              <div className="rounded-card relative size-full overflow-hidden">
+      {/* An absolute layer the size of the scene, so it takes no space and
+          the sticky child inside it is released exactly where the About panel
+          ends. (A sticky child of the wrapper with a negative margin would
+          slide one screen past the end.) */}
+      <div className="pointer-events-none absolute inset-0 z-10 hidden tablet:motion-safe:block">
+        <div className="sticky top-0 flex h-screen items-center justify-center [perspective:1200px]">
+          <div className="motion-safe:animate-enter-scale">
+            <motion.div
+              style={{ x, rotateY, rotateZ, transformStyle: "preserve-3d" }}
+              className={cn("relative", avatarCardSize)}
+            >
+              <div className="absolute inset-0 [backface-visibility:hidden]">
+                <div className="rounded-card relative size-full overflow-hidden">
+                  <Media
+                    image={site.images.portrait}
+                    label="Portrait photo"
+                    sizes={CARD_SIZES}
+                    priority
+                  />
+                </div>
+                <WaveBadge />
+              </div>
+              <div className="rounded-card absolute inset-0 overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
                 <Media
-                  image={site.images.portrait}
-                  label="Portrait photo"
+                  image={site.images.workspace}
+                  label="Workspace photo"
                   sizes={CARD_SIZES}
-                  priority
                 />
               </div>
-              <WaveBadge />
-            </div>
-            <div className="rounded-card absolute inset-0 overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
-              <Media
-                image={site.images.workspace}
-                label="Workspace photo"
-                sizes={CARD_SIZES}
-              />
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
       {children}

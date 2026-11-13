@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { SubscribeBanner } from "@/components/blog/SubscribeBanner";
 import { BlogCard } from "@/components/cards/BlogCard";
 import { MdxContent } from "@/components/mdx/MdxContent";
@@ -35,7 +36,20 @@ export async function generateMetadata({
   });
 }
 
-export default async function PostPage({ params }: PageProps<"/blogs/[slug]">) {
+// `params` is read inside <Suspense>, not in the page itself, so a navigation
+// to a post that was not prerendered can show the shell at once instead of
+// blocking (Next.js "instant navigation" validation).
+export default function PostPage({ params }: PageProps<"/blogs/[slug]">) {
+  return (
+    <Suspense fallback={<div className="min-h-screen" />}>
+      <PostContent params={params} />
+    </Suspense>
+  );
+}
+
+async function PostContent({
+  params,
+}: Pick<PageProps<"/blogs/[slug]">, "params">) {
   const { slug } = await params;
   const posts = getPosts();
   const post = posts.find((entry) => entry.slug === slug);

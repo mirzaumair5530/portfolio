@@ -140,7 +140,7 @@ export function Nav() {
           aria-expanded={menuOpen}
           aria-controls="phone-menu"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
-          className="bg-surface-dark flex size-10 cursor-pointer items-center justify-center rounded-full text-white tablet:hidden"
+          className="bg-contrast text-on-contrast flex size-10 cursor-pointer items-center justify-center rounded-full tablet:hidden"
         >
           <Icon name={menuOpen ? "close" : "menu"} />
         </button>
@@ -183,7 +183,7 @@ export function Nav() {
             </ul>
             <Link
               href={contactLink.href}
-              className="group bg-surface-dark relative flex h-10 w-[118px] items-center justify-center overflow-hidden rounded-full text-white"
+              className="group bg-contrast text-on-contrast relative flex h-10 w-[118px] items-center justify-center overflow-hidden rounded-full"
             >
               {/* An accent circle grows from the bottom edge to fill. */}
               <span

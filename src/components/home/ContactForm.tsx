@@ -11,10 +11,12 @@ import { cn } from "@/lib/cn";
 type Status = "idle" | "sending" | "success" | "error";
 type FieldErrors = Partial<Record<string, string[]>>;
 
-// Inputs sit on the surface colour with no border; an invalid field gets an
-// outline in the error colour.
-const fieldClass =
-  "bg-surface text-foreground placeholder:text-muted h-12 w-full rounded-full px-6 aria-[invalid=true]:outline-2 aria-[invalid=true]:outline-error";
+// Fields sit on the surface colour with no border; an invalid field gets an
+// outline in the error colour. Inputs are pills; the textarea is a 20 px card.
+const fieldBase =
+  "bg-surface text-foreground placeholder:text-muted w-full px-6 aria-[invalid=true]:outline-2 aria-[invalid=true]:outline-error";
+const inputClass = `${fieldBase} h-12 rounded-full`;
+const textareaClass = `${fieldBase} rounded-card h-[140px] resize-y py-4`;
 
 function Field({
   id,
@@ -131,8 +133,9 @@ export function ContactForm() {
             name="name"
             type="text"
             autoComplete="name"
+            placeholder="Jane Smith"
             required
-            className={fieldClass}
+            className={inputClass}
           />
         )}
       </Field>
@@ -143,8 +146,9 @@ export function ContactForm() {
             name="email"
             type="email"
             autoComplete="email"
+            placeholder="jane@example.com"
             required
-            className={fieldClass}
+            className={inputClass}
           />
         )}
       </Field>
@@ -161,7 +165,7 @@ export function ContactForm() {
               name="service"
               required
               defaultValue=""
-              className={cn(fieldClass, "cursor-pointer appearance-none pr-12")}
+              className={cn(inputClass, "cursor-pointer appearance-none pr-12")}
             >
               <option value="" disabled>
                 Select…
@@ -189,8 +193,9 @@ export function ContactForm() {
           <textarea
             {...props}
             name="message"
+            placeholder="Tell me about your project…"
             required
-            className={cn(fieldClass, "rounded-card h-[140px] resize-y py-4")}
+            className={textareaClass}
           />
         )}
       </Field>

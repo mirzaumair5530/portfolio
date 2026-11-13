@@ -20,7 +20,7 @@ export function StatCard({
       className={cn(
         "rounded-card flex h-full min-h-[239px] flex-col justify-between gap-6 p-10",
         tone === "dark"
-          ? "bg-surface-dark text-white"
+          ? "bg-contrast text-on-contrast"
           : "bg-accent text-on-accent",
       )}
     >

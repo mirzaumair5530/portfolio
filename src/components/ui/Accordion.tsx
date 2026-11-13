@@ -59,7 +59,7 @@ export function Accordion({
                     isOpen && "text-accent",
                   )}
                 >
-                  {index + 1}. {item.title}
+                  {`${index + 1}. ${item.title}`}
                 </span>
                 <Icon
                   name="chevron-down"

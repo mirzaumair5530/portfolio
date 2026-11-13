@@ -1,7 +1,7 @@
 import { cn } from "@/lib/cn";
 
 const tones = {
-  dark: "bg-surface-dark text-white",
+  dark: "bg-contrast text-on-contrast",
   accent: "bg-accent text-on-accent",
   surface: "bg-surface text-foreground",
 };
@@ -25,7 +25,7 @@ export function StepCard({
         tones[tone],
       )}
     >
-      <p className="type-number">{String(number).padStart(2, "0")}.</p>
+      <p className="type-number">{`${String(number).padStart(2, "0")}.`}</p>
       <div className="flex flex-col gap-3">
         <h3 className="type-h3">{title}</h3>
         <p className="type-small max-w-[420px]">{description}</p>
