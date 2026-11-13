@@ -8,7 +8,7 @@ export function NoiseOverlay() {
     <div
       aria-hidden="true"
       style={{ backgroundImage: grain }}
-      className="pointer-events-none fixed inset-0 z-[80] opacity-[0.12] print:hidden"
+      className="pointer-events-none fixed inset-0 z-[80] opacity-[0.04] print:hidden"
     />
   );
 }

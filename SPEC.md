@@ -11,6 +11,7 @@ Nov 1, 2026 · @Umair Farooq
 > - `/resume` (with the PDF download) and the RSS feed stay, although the clone spec does not list them. Blog search, tag filter, pagination and the table of contents are dropped.
 > - The blog moves from `/blog` to `/blogs`, and `/about` is added.
 > - Kept from the first build instead of the clone spec's suggestions: the `data-theme` theme provider (not `next-themes`), the `/api/contact` route handler (not a Server Action with `react-hook-form`), and inline SVG icons (not `lucide-react`). They already do the same job.
+> - Colours: the blue glass theme (`src/styles/tokens.css` and the "Blue glass" block in `src/styles/globals.css`) replaces the palette in section 3.1 of the clone spec. Layout, type and motion still follow the clone spec.
 
 ## Goals and scope
 

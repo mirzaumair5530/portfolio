@@ -15,10 +15,10 @@ type OgImageProps = {
 // The light theme's colours (src/styles/tokens.css). ImageResponse cannot read
 // CSS variables, so they are repeated here.
 const colors = {
-  bg: "#ffffff",
-  text: "#303030",
-  muted: "#707070",
-  accent: "#5e67e6",
+  bg: "#eef4ff",
+  text: "#0e1b33",
+  muted: "#44536f",
+  accent: "#2f7bff",
 };
 
 // Share card in the site's light palette: an outlined badge, an uppercase

@@ -1,54 +1,71 @@
 /*
- * Design tokens (specs/portfolio-clone-spec.md, section 3.1).
+ * Design tokens: the blue glass theme.
  * The theme is switched by `data-theme` on <html>. Light is the default.
  * To change palette, edit the values here; components only use the variables.
+ * --surface, --surface-dark and --nav-bg are translucent: the glass rules in
+ * globals.css blur what is behind them.
  */
 
 :root,
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg: #ffffff;
-  --text: #303030;
+  --bg: #eef4ff;
+  --text: #0e1b33;
   --text-inverse: #ffffff;
-  /* The reference uses #8f8f8f, which fails WCAG AA on white and on
-     --surface. This is the lightest grey that passes on both. */
-  --text-muted: #707070;
-  --text-muted-2: #707070;
-  --border: #dadada;
-  --surface: #f5f5f5;
-  --surface-dark: #303030;
+  /* Blue-grey that passes WCAG AA on the page gradient and over the glows. */
+  --text-muted: #44536f;
+  --text-muted-2: #44536f;
+  --border: rgba(14, 27, 51, 0.14);
+  --surface: rgba(255, 255, 255, 0.45);
+  --surface-dark: rgba(16, 42, 96, 0.72);
   /* The strongest block on the page (nav Contact button, dark stat and step
-     cards, dark buttons): dark grey in light, white in dark, so it stands out
-     from --surface in both. */
-  --contrast: #303030;
+     cards, dark buttons): solid navy in light, near-white in dark. */
+  --contrast: #0e1b33;
   --on-contrast: #ffffff;
-  --accent: #5e67e6;
+  --accent: #2f7bff;
   /* Text and icons placed on --accent. */
   --on-accent: #ffffff;
-  --nav-bg: rgb(255 255 255 / 0.9);
+  --nav-bg: rgba(255, 255, 255, 0.35);
   --success: #0bde66;
-  /* The reference uses #ff2244 in both themes; darkened here so error text
-     passes AA on white. */
-  --error: #e0102f;
+  /* Dark enough for error text to pass AA on --bg. */
+  --error: #cf0e2a;
+
+  /* Glass: the edge line, the top highlight and the drop shadow. */
+  --glass-edge: rgba(255, 255, 255, 0.7);
+  --glass-hi: rgba(255, 255, 255, 0.8);
+  --glass-shadow: rgba(20, 50, 120, 0.16);
+  /* The three glows that drift behind the page. */
+  --blob-1: rgba(47, 123, 255, 0.38);
+  --blob-2: rgba(92, 200, 255, 0.4);
+  --blob-3: rgba(140, 120, 255, 0.26);
+  --page: linear-gradient(160deg, #f3f8ff 0%, #dfeaff 55%, #eaf3ff 100%);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #1a1a1b;
-  --text: #ffffff;
-  --text-inverse: #303030;
-  --text-muted: #b5b5b5;
-  --text-muted-2: #d4d4d4;
-  --border: #5c5c5c;
-  --surface: #333333;
-  --surface-dark: #303030;
-  --contrast: #ffffff;
-  --on-contrast: #1a1a1b;
-  --accent: #d0ff71;
-  --on-accent: #1a1a1b;
-  --nav-bg: rgb(15 15 15 / 0.9);
+  --bg: #070b1a;
+  --text: #eaf2ff;
+  --text-inverse: #06122b;
+  --text-muted: #a8b6d1;
+  --text-muted-2: #c9d4ea;
+  --border: rgba(255, 255, 255, 0.14);
+  --surface: rgba(255, 255, 255, 0.07);
+  --surface-dark: rgba(92, 200, 255, 0.14);
+  --contrast: #eaf2ff;
+  --on-contrast: #06122b;
+  --accent: #5cc8ff;
+  --on-accent: #06122b;
+  --nav-bg: rgba(255, 255, 255, 0.08);
   --success: #0bde66;
   --error: #ff6b81;
+
+  --glass-edge: rgba(255, 255, 255, 0.16);
+  --glass-hi: rgba(255, 255, 255, 0.22);
+  --glass-shadow: rgba(0, 0, 0, 0.45);
+  --blob-1: rgba(47, 123, 255, 0.42);
+  --blob-2: rgba(92, 200, 255, 0.26);
+  --blob-3: rgba(120, 90, 255, 0.3);
+  --page: linear-gradient(160deg, #070b1a 0%, #0d1b3d 60%, #081228 100%);
 }

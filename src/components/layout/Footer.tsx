@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 
 export function Footer() {
   return (
-    <footer className="bg-accent text-on-accent print:hidden">
+    <footer className="glass-footer text-foreground print:hidden">
       <Container className="py-10">
         <div className="grid gap-8 tablet:grid-cols-3">
           <div className="flex flex-col gap-2">
@@ -39,7 +39,7 @@ export function Footer() {
               image={site.images.avatar}
               name={site.name}
               size={24}
-              className="bg-on-accent! text-accent! text-[10px]!"
+              className="text-[10px]!"
             />
             <span className="font-semibold">{site.name}</span>
           </p>

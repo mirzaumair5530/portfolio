@@ -84,7 +84,7 @@ export function SubscribeBanner() {
             placeholder="Your email"
             aria-invalid={status === "error"}
             aria-describedby={message ? "subscribe-message" : undefined}
-            className="h-12 w-full rounded-full bg-white px-6 text-[#303030] placeholder:text-[#707070]"
+            className="h-12 w-full rounded-full bg-white px-6 text-[#0e1b33] placeholder:text-[#44536f]"
           />
           {/* Honeypot: people never see or reach it. */}
           <div aria-hidden="true" className="absolute -left-[9999px]">
@@ -102,8 +102,9 @@ export function SubscribeBanner() {
             variant="dark"
             disabled={status === "sending"}
             aria-busy={status === "sending"}
-            // On the accent banner the button stays dark in both themes.
-            className="bg-surface-dark! hover:text-surface-dark! text-white! hover:bg-white!"
+            // On the accent banner: the on-accent colour as the fill, so the
+            // button stands out from the banner in both themes.
+            className="bg-on-accent! text-foreground! hover:bg-foreground! hover:text-background!"
           >
             {status === "sending" ? "Subscribing…" : "Subscribe"}
           </Button>
